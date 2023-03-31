@@ -9,16 +9,6 @@ function component($productname, $productprice, $productimage){
                 </div>
                 <div class='card-body'>
                     <h5 class='title'>$productname</h5>
-                    <h6>
-                        <i class='fas fa-star'></i>
-                        <i class='fas fa-star'></i>
-                        <i class='fas fa-star'></i>
-                        <i class='fas fa-star'></i>
-                        <i class='far fa-star'></i>
-                    </h6>
-                    <p>
-                        Sample Descriptions for the Product
-                    </p>
                     <h5>
                         <span class='price'>$productprice</span>
                     </h5>

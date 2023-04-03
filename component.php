@@ -10,7 +10,7 @@ function component($productname, $productprice, $productimage){
                 <div class='card-body'>
                     <h5 class='title'>$productname</h5>
                     <h5>
-                        <span class='price'>$productprice</span>
+                        <span class='price'>₱$productprice</span>
                     </h5>
                     <button class='btn' type='submit' name='add'>Add to cart<i class='fas fa-shopping-cart'></i></button>
                 </div>

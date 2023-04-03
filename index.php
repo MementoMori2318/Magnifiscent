@@ -16,7 +16,7 @@
     <title>Magnifiscent</title>
 </head>
 <body>
-    <!-- START_ITEMS -->
+    <!-- START Product -->
     <div class="container">
         <div class="row">
            <?php
@@ -29,6 +29,6 @@
            ?>
         </div>
     </div>
-    <!--END_ITEMS -->
+    <!--END Product -->
 </body>
 </html>

@@ -20,12 +20,10 @@
     <div class="container">
         <div class="row">
            <?php
-            component("Product 1", 500, "image/1.png");
-            component("Product 2", 700, "image/2.png");
-            component("Product 3", 300, "image/3.png");
-            component("Product 1", 500, "image/1.png");
-            component("Product 2", 700, "image/2.png");
-            component("Product 3", 300, "image/3.png");
+            $result = $database->getData();
+            while($row = mysqli_fetch_assoc($result)){
+                component($row['product_name'],$row['product_price'],$row['product_image']); 
+            } 
            ?>
         </div>
     </div>

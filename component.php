@@ -1,6 +1,6 @@
 <?php
 
-function component($productname, $productprice, $productimage){
+function component($productname, $productprice, $productimage, $productid){
     $element = "<div class='products'>
         <form>
             <div class='card'>
@@ -12,7 +12,8 @@ function component($productname, $productprice, $productimage){
                     <h5>
                         <span class='price'>₱$productprice</span>
                     </h5>
-                    <button class='btn' type='submit' name='add'>Add to cart<i class='fas fa-shopping-cart'></i></button>
+                    <button class='btn' type='submit' name='add'>Add to Cart<i class='fas fa-shopping-cart'></i></button>
+                    <input type='hidden' name='product_id' value='$productid'/>
                 </div>
             </div>
         </form>

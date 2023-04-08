@@ -1,8 +1,28 @@
 <?php
+
+    // Start session
+    session_start();
+
     require_once('db.php');
     require_once('./component.php');
 
-    $database = new db("Magnifiscent", "Products")
+    // Create instance of Createdb class
+    $database = new db("Magnifiscent", "Products");
+
+    if (isset($_POST['add'])) {
+        print_r($_POST['product_id']);
+        if (isset($_SESSION['cart'])) {
+            print_r($_SESSION['cart']); 
+        }else {
+            $item_array = array(
+                'product_id' => $_POST['product_id']
+            );
+
+            // Create new session variable
+            $_SESSION['cart'][0] = $item_array;
+            print_r($_SESSION['cart']);
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +42,7 @@
            <?php
             $result = $database->getData();
             while($row = mysqli_fetch_assoc($result)){
-                component($row['product_name'],$row['product_price'],$row['product_image']); 
+                component($row['product_name'],$row['product_price'],$row['product_image'],$row['id']); 
             } 
            ?>
         </div>

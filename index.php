@@ -10,21 +10,11 @@
     $database = new db("Magnifiscent", "Products");
 
     if (isset($_POST['add'])) {
-        //print_r($_POST['product_id']);
-        echo "Add button clicked.<br>";
-        echo "Product ID: ".$_POST['product_id']."<br>";
+        print_r($_POST['product_id']);
+        
         if (isset($_SESSION['cart'])) {
-
-            $item_array_id = array_column($_SESSION['cart'], "product_id");
-            print_r($item_array_id); 
+            print_r($_SESSION['cart']); 
             
-            if(in_array($_POST['product_id'], $item_array_id)){
-                echo '<script>';
-                echo 'console.log("Product is already added in the cart");';
-                echo '"index.php";';
-                echo '</script>';
-            }
-
         }else {
             $item_array = array(
                 'product_id' => $_POST['product_id']
@@ -32,7 +22,7 @@
 
             // Create new session variable
             $_SESSION['cart'][0] = $item_array;
-           //print_r($_SESSION['cart']);
+            print_r($_SESSION['cart']);
         }
     }
 ?>
@@ -43,7 +33,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styl.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <title>Magnifiscent</title>

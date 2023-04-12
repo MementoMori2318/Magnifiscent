@@ -7,12 +7,16 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 .container {
-    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 .row {
-    display: grid; 
+    display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: 5px;
+    grid-gap: 20px;
+    align-items: center;
   }
 .img {
     background-color: aquamarine;

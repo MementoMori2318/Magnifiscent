@@ -60,9 +60,11 @@ class db
     }
 
     // get product from the database
-    public function getData(){
+    public function getData($limit = null){
         $sql = "SELECT * FROM $this->tablename";
-
+        if ($limit !== null) {
+            $sql .= " LIMIT $limit";
+        }
         $result = mysqli_query($this->con, $sql);
 
         if(mysqli_num_rows($result) > 0){

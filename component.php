@@ -13,8 +13,10 @@ function component($productname, $productprice, $productimage, $productid){
                 </div>
                     <div class='btn-container'>
                         <button class='btn' type='submit' name='buy'>Buy Now</button>
-                        <button class='btn' type='submit' name='add'>Add to Cart</button>
+                        
+                        <button class='btn' type='submit' name='add' value='$productid'>Add to Cart</button>
                         <input type='hidden' name='product_id' value='$productid'/>
+                       
                     </div>   
             </div>
         </form>

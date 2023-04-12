@@ -4,6 +4,7 @@ body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 .container {
     padding: 15px;
@@ -29,16 +30,18 @@ body {
     
 }
 .card-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+   
+}
+.title {
+    font-size: 20px;
+    font-weight: 400;
 }
 .price {
     color: #fa7705;
     font-size: 30px;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    align-self: center;
 }
 .btn {
     background-color: #fa7705;

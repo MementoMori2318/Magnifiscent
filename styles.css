@@ -1,3 +1,5 @@
+/* font-family: 'Roboto', sans-serif;
+font-family: 'Kaushan Script', cursive; */
 body {
     padding: 0;
     margin: 0;
@@ -36,11 +38,21 @@ body {
     align-items: center;
     justify-content: center;
 }
+.price {
+    color: #fa7705;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
 .btn {
-    background-color: yellow;
+    background-color: #fa7705;
+    border-radius: 3px;
     border: none;
-    height: 50px;
+    height: 40px;
     width: 150px;
-    padding: 10px;
-    margin: 10px;
+    padding: 5px;
+    margin: 5px;
+    font-size: 16px;
+    color: #fdfdfd;
+    font-family: 'Roboto', sans-serif;
 }

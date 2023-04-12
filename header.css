@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #03273f;
+    background-color: #000000;
 }
 ul li{
     text-decoration: none;
@@ -56,4 +56,8 @@ ul li ul li a{
 }
 .fas:hover {
     color: #fa7705;
+}
+img {
+    width: 200px;
+    height: 200px;
 }

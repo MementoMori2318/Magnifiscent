@@ -18,7 +18,11 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="">Men</a></li>
                 <li><a href="">Women</a></li>
-            </ul> 
+            </ul>
+            <ul>
+                <li><i class='fas fa-shopping-cart'></i></li>
+            </ul>
+           
         </div>
     </nav>
 </body>

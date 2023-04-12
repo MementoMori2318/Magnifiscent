@@ -56,6 +56,7 @@
     <title>Magnifiscent</title>
 </head>
 <body>
+    <?php require_once("header.php")?>
     <!-- START Product -->
     <div class="container">
         <div class="row">

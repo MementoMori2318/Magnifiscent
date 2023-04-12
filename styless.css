@@ -31,7 +31,8 @@ body {
     justify-content: center;
     width: 200px;
     border: 1px solid black;
-    margin: 10px;
+    margin: 5px;
+    padding: 5px;
     
 }
 /* .card-body {

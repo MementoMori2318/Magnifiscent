@@ -9,12 +9,13 @@ function component($productname, $productprice, $productimage, $productid){
                 </div>
                 <div class='card-body'>
                     <h5 class='title'>$productname</h5>
-                    <h5>
-                        <span class='price'>₱$productprice.00</span>
-                    </h5>
-                    <button class='btn' type='submit' name='add'>Add to Cart  <i class='fas fa-shopping-cart'></i></button>
-                    <input type='hidden' name='product_id' value='$productid'/>
+                    <h5 class='price'>₱$productprice.00</h5>
                 </div>
+                    <div class='btn-container'>
+                        <button class='btn' type='submit' name='buy'>Buy Now</button>
+                        <button class='btn' type='submit' name='add'>Add to Cart</button>
+                        <input type='hidden' name='product_id' value='$productid'/>
+                    </div>   
             </div>
         </form>
     </div>";

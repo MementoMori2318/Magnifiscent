@@ -20,7 +20,7 @@
                 <li><a href="">Women</a></li>
             </ul>
             <ul>
-                <li><i class='fas fa-shopping-cart'></i></li>
+                <li class="cart"><i class='fas fa-shopping-cart'></i></li>
             </ul>
            
         </div>

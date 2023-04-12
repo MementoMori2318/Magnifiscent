@@ -2,7 +2,7 @@
 
 function component($productname, $productprice, $productimage, $productid){
     $element = "<div class='products'>
-        <form>
+        <form method='POST'>
             <div class='card'>
                 <div>
                     <img src='$productimage' alt='Image1' class='img'>

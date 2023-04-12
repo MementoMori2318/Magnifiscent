@@ -60,9 +60,5 @@
         </div>
     </div>
     <!--END Product -->
-    <form method="POST">
-    <input type="hidden" name="product_id" value='$productid'>
-    <button type="submit" name="add">Add to Cart</button>
-</form>
 </body>
 </html>

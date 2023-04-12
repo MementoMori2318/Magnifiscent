@@ -9,13 +9,9 @@ body {
     padding: 15px;
 }
 .row {
-    /* display: grid; 
+    display: grid; 
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: 5px; */
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    grid-gap: 5px;
   }
 .img {
     background-color: aquamarine;

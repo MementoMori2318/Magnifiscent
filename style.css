@@ -33,9 +33,9 @@ body {
     margin: 10px;
     
 }
-.card-body {
+/* .card-body {
    
-}
+} */
 .title {
     font-size: 20px;
     font-weight: 400;
@@ -51,8 +51,8 @@ body {
     background-color: #fa7705;
     border-radius: 3px;
     border: none;
-    height: 30px;
-    width: 120px;
+    height: 40px;
+    width: 180px;
     padding: 5px;
     margin: 5px;
     font-size: 16px;

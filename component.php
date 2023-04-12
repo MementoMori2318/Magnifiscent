@@ -12,7 +12,7 @@ function component($productname, $productprice, $productimage, $productid){
                     <h5>
                         <span class='price'>₱$productprice.00</span>
                     </h5>
-                    <button class='btn' type='submit' name='add'>Add to Cart  <i class='fas fa-shopping-cart'></i></button>
+                    <button class='btn' type='submit' name='add' onclick='logProductId($productid)'>Add to Cart  <i class='fas fa-shopping-cart'></i></button>
                     <input type='hidden' name='product_id' value='$productid'/>
                 </div>
             </div>
@@ -21,3 +21,9 @@ function component($productname, $productprice, $productimage, $productid){
 
     echo $element;
 }
+?>
+<script>
+function logProductId(productId) {
+  console.log(productId);
+}
+</script>

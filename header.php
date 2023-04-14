@@ -19,18 +19,20 @@
                 <li><a href="">Men</a></li>
                 <li><a href="">Women</a></li>
             </ul>
-            <ul>
-                <li class="cart"><i class='fas fa-shopping-cart'></i></li>
+           
+                <a class="cart"><i class='fas fa-shopping-cart'></i>
                 
                 <?php
                     if (isset($_SESSION['cart'])){
                         $count = count($_SESSION['cart']);
-                        echo "<span id='cart_count'>$count</span>";
-                    } else {
-                        echo "<span id='cart_count'>0</span>";
-                    }
+                        echo "<span class='badge' id='cart_count'>$count</span>";
+                    } 
+                    // else {
+                    //      echo "<span id='cart_count'>0</span>";
+                    //  }
                 ?>
-            </ul>
+                <a>
+            
            
         </div>
     </nav>

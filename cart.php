@@ -10,8 +10,9 @@
 <body>
     <?php require("header.php")?>
     <div class="container">
+        
         <div class="cart-item-container">
-            <h1>Your cart</h1>
+        <h3 class="your-cart">Your cart</h3>
             <form action="cart.phh" method="get" class="cart-items">
                 <div>
                     <img src="image/1.png" alt="image">
@@ -20,13 +21,18 @@
                     <h5 class="title">Product</h5>
                     <h5 class="price">12312</h5>
                     <button class='btn' type='submit' name='buy'>Buy Now</button>
-                                <button class='btn' type='submit' name='add' value='$productid'>Add to Cart</button>
-                                <input type='hidden' name='product_id' value='$productid'/>
+                    <button class='btn' type='submit' name='add' value='$productid'>Add to Cart</button>
+                    <input type='hidden' name='product_id' value='$productid'/>
+                </div>
+                <div>
+                    <button><i class="fas fa-minus"></i></button>
+                    <input type="text" value="1" class="counter">
+                    <button><i class="fas fa-plus"></i></button>
                 </div>
             </form>
         </div>
         <div class="total-item-container">
-            
+
         </div>
     </div>
 </body>

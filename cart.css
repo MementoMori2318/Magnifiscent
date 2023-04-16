@@ -8,7 +8,13 @@ body {
 .container {
     padding: 10px;
     margin: 10px;
-    grid-template-rows: 1fr 1fr;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    
+}
+.your-cart {
+    padding: 10px;
+    background-color: #ddd;
 }
 .cart-items {
     border: 1px solid red;
@@ -17,9 +23,15 @@ body {
     font-size: 15px;
 }
 .cart-item-container {
+    padding: 10px;
+    margin: 10px;
     border: 1px solid red;
+    
 }
 .total-item-container {
+    padding: 10px;
+    margin: 10px;
     border: 1px solid red;
     height: 100px;
+    background-color: #ddd;
 }

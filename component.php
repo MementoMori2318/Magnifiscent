@@ -28,10 +28,9 @@ function cartElement($productname, $productprice, $productimage, $productid){
             <div>
                 <img src=$productimage alt='image'>
             </div>
-            <div class=''>
+            <div class='product-info'>
                 <h5 class='title'>$productname</h5>
-                <h5 class='price'>$productprice</h5>
-                <h5 class='price'>asdasjdlmasjdmoasd</h5>
+                <h5 class='price'>₱$productprice</h5>
                 <button class='btn' type='delete' name='buy'>Delete</button>
             </div>
             <div>

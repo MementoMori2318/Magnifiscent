@@ -18,6 +18,9 @@ body {
 }
 .cart-items {
     border: 1px solid red;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 1em;
 }
 .title {
     font-size: 15px;
@@ -26,6 +29,8 @@ body {
     padding: 10px;
     margin: 10px;
     border: 1px solid red;
+    display: grid;
+    grid-row-gap: 1em;
     
 }
 .total-item-container {

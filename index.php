@@ -16,6 +16,11 @@
             if(in_array($product_id, $item_array_id)){
                 echo'<script>alert("Product is already added in the cart")</script>';
                 echo'<script>window.location ="index.php"</script>';
+                // $count = count($_SESSION['cart']);
+                // $item_array = array(
+                //  'product_id' => $product_id
+                // );
+                // $_SESSION['cart'][$count] = $item_array;
             } else {
                $count = count($_SESSION['cart']);
                $item_array = array(

@@ -69,14 +69,15 @@ img {
     position: relative;
   
 }
-.badge {
+.cart .badge {
     position: absolute;
-    top: -10px;
+    top: -5px;
     right: -10px;
     height: 15px;
-    width: 5px;
+    width: 3px;
+    padding: 5px 5px;
     border-radius: 50%;
     background: red;
     color: yellow;
-    font-size: 16px;
+    font-size: 15px;
   }

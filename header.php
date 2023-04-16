@@ -20,7 +20,7 @@
                 <li><a href="">Women</a></li>
             </ul>
            
-                <a class="cart"><i class='fas fa-shopping-cart'></i>
+                <a href="cart.php" class="cart"><i class='fas fa-shopping-cart'></i>
                 
                 <?php
                     if (isset($_SESSION['cart'])){
@@ -31,7 +31,7 @@
                     //      echo "<span id='cart_count'>0</span>";
                     //  }
                 ?>
-                <a>
+                </a>
             
            
         </div>

@@ -1,0 +1,25 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+
+}
+.container {
+    padding: 10px;
+    margin: 10px;
+    grid-template-rows: 1fr 1fr;
+}
+.cart-items {
+    border: 1px solid red;
+}
+.title {
+    font-size: 15px;
+}
+.cart-item-container {
+    border: 1px solid red;
+}
+.total-item-container {
+    border: 1px solid red;
+    height: 100px;
+}

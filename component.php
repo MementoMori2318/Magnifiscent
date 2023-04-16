@@ -23,3 +23,23 @@ function component($productname, $productprice, $productimage, $productid){
     echo $element;
 }
 
+function cartElement($productname, $productprice, $productimage, $productid){
+    $cartElement = "<form action='cart.phh' method='GET' class='cart-items'>
+            <div>
+                <img src=$productimage alt='image'>
+            </div>
+            <div class=''>
+                <h5 class='title'>$productname</h5>
+                <h5 class='price'>$productprice</h5>
+                <h5 class='price'>asdasjdlmasjdmoasd</h5>
+                <button class='btn' type='delete' name='buy'>Delete</button>
+            </div>
+            <div>
+                <button><i class='fas fa-minus'></i></button>
+                <input type='text' value='1' class='counter'>
+                <button><i class='fas fa-plus'></i></button>
+            </div>
+        </form>";
+
+        echo $cartElement;
+}

@@ -1,3 +1,14 @@
+<?php 
+    // Start session
+    session_start();
+
+    require_once('db.php');
+    require_once('./component.php');
+
+    // Create instance of Createdb class
+    $database = new db("Magnifiscent", "Products");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,26 +24,28 @@
         
         <div class="cart-item-container">
         <h3 class="your-cart">Your cart</h3>
-            <form action="cart.phh" method="get" class="cart-items">
-                <div>
-                    <img src="image/1.png" alt="image">
-                </div>
-                <div class="">
-                    <h5 class="title">Product</h5>
-                    <h5 class="price">12312</h5>
-                    <button class='btn' type='submit' name='buy'>Buy Now</button>
-                    <button class='btn' type='submit' name='add' value='$productid'>Add to Cart</button>
-                    <input type='hidden' name='product_id' value='$productid'/>
-                </div>
-                <div>
-                    <button><i class="fas fa-minus"></i></button>
-                    <input type="text" value="1" class="counter">
-                    <button><i class="fas fa-plus"></i></button>
-                </div>
-            </form>
+            <?php
+
+                if(isset($_SESSION['cart'])){
+                    $product_id = array_column($_SESSION['cart'],"product_id");
+
+                    $result = $database->getData();
+                    while($row = mysqli_fetch_assoc($result)){
+                       foreach($product_id as $id){
+                        if($row['id'] == $id){
+                            cartElement($row['product_name'],$row['product_price'],$row['product_image'],$row['id']);
+                        }
+                       }; 
+                    } 
+                } else {
+                    echo "<h2>Your cart is empty shop now!></h2>";
+                }
+               
+
+            ?>
         </div>
         <div class="total-item-container">
-
+            <h3>Order Summary</h3>
         </div>
     </div>
 </body>

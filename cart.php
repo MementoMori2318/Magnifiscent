@@ -46,6 +46,14 @@
         </div>
         <div class="total-item-container">
             <h3>Order Summary</h3>
+            <div class="order-sum">
+                <?php
+                if(isset($_SESSION['cart'])){
+                    
+                }
+                
+                ?>
+            </div>
         </div>
     </div>
 </body>

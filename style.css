@@ -2,11 +2,61 @@
 font-family: 'Kaushan Script', cursive; */
 
 body {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
     font-family: 'Roboto', sans-serif;
 }
+/* Hero style start*/
+.hero-container {
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    
+    color: #fff;
+    display: flex;
+    /* flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+}
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    padding-left: 10em;
+    padding-right: 10em;
+    padding-bottom: 10em;
+    font-family: 'Libre Baskerville', serif;
+    background-color: #000000;
+    background-image: linear-gradient(to top, #434343 0%,#0f0e0e 13% , #000000 100%);
+    
+}
+.hero-title h1 {
+    
+    font-size: 60px;
+    font-weight: 500;
+    margin-bottom: -20px;
+}
+.hero-title h5 {
+    font-size: 30px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.hero-title button {
+    background-color: #36064e;
+    font-weight: 700;
+    width: 200px;
+    height: 40px;
+    color: #ddd;
+    border: none;
+    border-color: #36064e;
+}
+.hero-title, .hero-img {
+    width: 50vw;
+}
+/* Hero style end */
 .container {
     display: flex;
     justify-content: center;

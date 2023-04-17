@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #000000;
+    background-color: #36064e;
 }
 ul li{
     text-decoration: none;
@@ -78,6 +78,5 @@ img {
     padding: 5px 5px;
     border-radius: 50%;
     background: red;
-    color: yellow;
     font-size: 15px;
   }

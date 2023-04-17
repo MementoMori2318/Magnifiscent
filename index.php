@@ -16,11 +16,11 @@
             if(in_array($product_id, $item_array_id)){
                 echo'<script>alert("Product is already added in the cart")</script>';
                 echo'<script>window.location ="index.php"</script>';
-                // $count = count($_SESSION['cart']);
-                // $item_array = array(
-                //  'product_id' => $product_id
-                // );
-                // $_SESSION['cart'][$count] = $item_array;
+                $count = count($_SESSION['cart']);
+                $item_array = array(
+                 'product_id' => $product_id
+                );
+                $_SESSION['cart'][$count] = $item_array;
             } else {
                $count = count($_SESSION['cart']);
                $item_array = array(
@@ -49,10 +49,27 @@
     <link rel="stylesheet" href="style.css" href="styles.css?version=51">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+
     <title>Magnifiscent</title>
 </head>
 <body>
+
     <?php require("header.php")?>
+    
+    <!-- START HERO -->
+    <div class="hero-container">
+        <div class="hero-title">
+            <h1>Magnifiscent</h1>
+            <h5>Perfume is a journey that starts on the skin and continues to the soul.</h5>
+            <button>EXPLORE OUR SCENT     <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+        <div class="hero-img">
+            
+        </div>
+    </div>
+    <!-- ENd HERO -->
+
     <!-- START Product -->
     <div class="container">
         <div class="row">

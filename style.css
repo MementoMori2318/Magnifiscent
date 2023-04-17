@@ -31,7 +31,7 @@ body {
     
 }
 .hero-title h1 {
-    
+    align-self: center;
     font-size: 60px;
     font-weight: 500;
     margin-bottom: -20px;
@@ -44,14 +44,19 @@ body {
     justify-content: center; 
 }
 
-.hero-title button {
+.hero-title a {
     background-color: #36064e;
-    font-weight: 700;
-    width: 200px;
+    font-size: 15px;
+    font-weight: 600;
+    width: 210px;
     height: 40px;
     color: #ddd;
     border: none;
-    border-color: #36064e;
+    border-color: #520b74;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    justify-content: space-evenly;
 }
 .hero-title, .hero-img {
     width: 50vw;

@@ -37,6 +37,10 @@ body {
     padding: 10px;
     margin: 10px;
     border: 1px solid red;
-    height: 100px;
     background-color: #ddd;
+    height: fit-content;
+}
+.order-sum, .total {
+    display: flex;
+    justify-content: space-between;
 }

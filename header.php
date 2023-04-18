@@ -23,13 +23,15 @@
                 <a href="cart.php" class="cart"><i class='fas fa-shopping-cart'></i>
                 
                 <?php
-                    if (isset($_SESSION['cart'])){
-                        $count = count($_SESSION['cart']);
+                   if (isset($_SESSION['cart'])){
+                    $count = count($_SESSION['cart']);
+                    if ($count > 0) {
                         echo "<span class='badge' id='cart_count'>$count</span>";
-                    } 
-                    // else {
-                    //      echo "<span id='cart_count'>0</span>";
-                    //  }
+                    }
+                } 
+                // else {
+                //      echo "<span id='cart_count'>0</span>";
+                // }
                 ?>
                 </a>
             

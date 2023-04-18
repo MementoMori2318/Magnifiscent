@@ -9,35 +9,6 @@
     // Create instance of Createdb class
     $database = new db("Magnifiscent", "Products");
     
-    if (isset($_POST['add'])) {
-        $product_id = $_POST['add'];
-        if (isset($_SESSION['cart'])) {
-            $item_array_id = array_column($_SESSION['cart'], "product_id");
-            if(in_array($product_id, $item_array_id)){
-                echo'<script>alert("Product is already added in the cart")</script>';
-                echo'<script>window.location ="index.php"</script>';
-                $count = count($_SESSION['cart']);
-                $item_array = array(
-                 'product_id' => $product_id
-                );
-                $_SESSION['cart'][$count] = $item_array;
-            } else {
-               $count = count($_SESSION['cart']);
-               $item_array = array(
-                'product_id' => $product_id
-               );
-               $_SESSION['cart'][$count] = $item_array;
-            }
-        } else {
-            $item_array = array(
-                'product_id' => $product_id
-            );
-    
-            // Create new session variable
-            $_SESSION['cart'][0] = $item_array;
-        }
-    }
-   
 ?>
 
 <!DOCTYPE html>

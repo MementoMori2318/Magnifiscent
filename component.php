@@ -23,6 +23,8 @@ function component($productname, $productprice, $productimage, $productid){
     echo $element;
 }
 
+
+
 function cartElement($productname, $productprice, $productimage, $productid){
     $cartElement = "<form action='cart.php?action=delete&id=$productid' method='POST' class='cart-items'>
             <div>

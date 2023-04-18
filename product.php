@@ -15,7 +15,7 @@
             $item_array_id = array_column($_SESSION['cart'], "product_id");
             if(in_array($product_id, $item_array_id)){
                 echo'<script>alert("Product is already added in the cart")</script>';
-                echo'<script>window.location ="index.php"</script>';
+                echo'<script>window.location ="product.php"</script>';
                 $count = count($_SESSION['cart']);
                 $item_array = array(
                  'product_id' => $product_id
@@ -48,6 +48,7 @@
     <title></title>
 </head>
 <body>
+    <?php require("header.php")?>
     <!-- START Product -->
     <div class="container">
         <div class="row">

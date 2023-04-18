@@ -36,11 +36,12 @@ function cartElement($productname, $productprice, $productimage, $productid){
                 <button class='btn' type='submit' name='delete'>Delete</button>
             </div>
             <div>
-                <button><i class='fas fa-minus'></i></button>
+                <button class='minus-btn'><i class='fas fa-minus'></i></button>
                 <input type='text' value='1' class='counter'>
-                <button><i class='fas fa-plus'></i></button>
+                <button class='plus-btn'><i class='fas fa-plus'></i></button>
             </div>
         </form>";
 
         echo $cartElement;
 }
+

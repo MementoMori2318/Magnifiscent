@@ -33,7 +33,7 @@
         <div class="hero-title">
             <h1>MagnifiScent</h1>
             <h5>Perfume is a journey that starts on the skin and continues to the soul.</h5>
-            <a href="product.php">EXPLORE OUR SCENT        <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="product.php">EXPLORE OUR SCENT<i class="fa-solid fa-arrow-right"></i></a>
         </div>
         <div class="hero-img">
 
@@ -41,6 +41,5 @@
     </div>
     <!-- ENd HERO -->
 
-    
 </body>
 </html>

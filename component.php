@@ -37,11 +37,10 @@ function cartElement($productname, $productprice, $productimage, $productid){
             </div>
             <div>
                 <button class='minus-btn'><i class='fas fa-minus'></i></button>
-                <input type='text' value='1' class='counter'>
+                <input id='count-el' type='text' value='1' class='counter'>1</input>
                 <button class='plus-btn'><i class='fas fa-plus'></i></button>
             </div>
         </form>";
 
         echo $cartElement;
 }
-

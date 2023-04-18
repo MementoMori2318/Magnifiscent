@@ -29,9 +29,7 @@
                         echo "<span class='badge' id='cart_count'>$count</span>";
                     }
                 } 
-                // else {
-                //      echo "<span id='cart_count'>0</span>";
-                // }
+               
                 ?>
                 </a>
             

@@ -37,26 +37,24 @@
         <h3 class="your-cart">Your cart</h3>
             <?php
     
+                $total = 0;
 
-$total = 0;
+                if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])){
+                    $product_id = array_column($_SESSION['cart'],"product_id");
 
-if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])){
-    $product_id = array_column($_SESSION['cart'],"product_id");
-
-    $result = $database->getData();
-    while($row = mysqli_fetch_assoc($result)){
-        foreach($product_id as $id){
-            if($row['id'] == $id){
-                cartElement($row['product_name'], $row['product_price'], $row['product_image'], $row['id']);
-                $total = $total + (int)$row['product_price'];
-            }
-        }; 
-    } 
-} else {
-    echo "<h2>Your cart is empty. <a href='product.php'>Shop now!</a></h2>";
-} 
+                    $result = $database->getData();
+                    while($row = mysqli_fetch_assoc($result)){
+                        foreach($product_id as $id){
+                            if($row['id'] == $id){
+                                cartElement($row['product_name'], $row['product_price'], $row['product_image'], $row['id']);
+                                $total = $total + (int)$row['product_price'];
+                            }
+                        }; 
+                    } 
+                } else {
+                    echo "<h2>Your cart is empty. <a href='product.php'>Shop now!</a></h2>";
+                } 
                
-
             ?>
         </div>
         <div class="total-item-container">
@@ -94,6 +92,8 @@ if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])){
            
         </div>
     </div>
+   
+    <script src="script.js"></script>
 </body>
 </html>
 

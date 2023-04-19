@@ -31,15 +31,15 @@ function pwdMatch($pwd, $pwdrepeat){
     return  $result;
 }
 
-function uidExists($conn, $email){
-    $sql = "SELECT * FROM customer WHERE customer_email = ?";
+function uidExists($conn, $name, $email){
+    $sql = "SELECT * FROM customer WHERE customer_name = ? OR customer_email = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
      header("location: ../register.php?error=stmtfailed");
          exit();
     }
  
-    mysqli_stmt_bind_param($stmt, "s", $email,);
+    mysqli_stmt_bind_param($stmt, "ss",$name, $email);
     mysqli_stmt_execute($stmt);
  
     $resultData = mysqli_stmt_get_result($stmt);
@@ -83,8 +83,8 @@ function  createUser($conn, $name, $address ,$email, $pwd){
     }
     return  $result;
 }
-function loginUser($conn, $email, $pwd){
-    $uidExists = uidExists($conn, $email);
+function loginUser($conn, $name, $pwd){
+    $uidExists = uidExists($conn, $name, $name);
 
     if ($uidExists === false) {
         header("location: ../login.php?error=wronglogin");
@@ -100,8 +100,9 @@ function loginUser($conn, $email, $pwd){
     }
     else if ($checkPwd === true) {
         session_start();
-        $_SESSION["id"] = $uidExists["id"];
-        $_SESSION["customer_email"] = $uidExists["customer_email"];
+        $_SESSION["id"] = $uidExists["ID"];
+        $_SESSION["customer_name"] = $uidExists["customer_name"];
+        // $_SESSION["customer_email"] = $uidExists["customer_email"];
         header("location: ../index.php");
         exit();
     }

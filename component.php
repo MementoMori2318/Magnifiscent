@@ -24,8 +24,7 @@ function component($productname, $productprice, $productimage, $productid){
 }
 
 
-
-function cartElement($productname, $productprice, $productimage, $productid){
+function cartElement($productname, $productprice, $productimage, $productid,) {
     $cartElement = "<form action='cart.php?action=delete&id=$productid' method='POST' class='cart-items'>
             <div>
                 <img src=$productimage alt='image'>
@@ -36,11 +35,14 @@ function cartElement($productname, $productprice, $productimage, $productid){
                 <button class='btn' type='submit' name='delete'>Delete</button>
             </div>
             <div>
-                <button class='minus-btn'><i class='fas fa-minus'></i></button>
-                <input id='count-el' type='text' value='1' class='counter'>1</input>
-                <button class='plus-btn'><i class='fas fa-plus'></i></button>
+                <form action='' method='POST'>
+                    <button class='minus-btn'><i class='fas fa-minus'></i></button>
+                    <input id='' type='text' value='1' class='counter'></input>
+                    <button class='plus-btn'><i class='fas fa-plus'></i></button>
+                   
+                </form>
             </div>
         </form>";
 
-        echo $cartElement;
+    echo $cartElement;
 }

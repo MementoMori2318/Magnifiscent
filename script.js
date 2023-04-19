@@ -1,11 +1,15 @@
-function increaseQuantity(productid) {
-    var inputEl = document.getElementById("count-el-" + productid);
-    inputEl.value = parseInt(inputEl.value) + 1;
+function incrementQty(productid, productstock) {
+    let countEl = document.getElementById("count-el-" + productid);
+    let count = parseInt(countEl.value);
+    if (count < productstock) { // Check if count is less than product stock
+        countEl.value = count + 1;
+    }
 }
 
-function decreaseQuantity(productid) {
-    var inputEl = document.getElementById("count-el-" + productid);
-    if (parseInt(inputEl.value) > 1) {
-        inputEl.value = parseInt(inputEl.value) - 1;
+function decrementQty(productid, productstock) {
+    let countEl = document.getElementById("count-el-" + productid);
+    let count = parseInt(countEl.value);
+    if (count > 1) { // Check if count is greater than 1
+        countEl.value = count - 1;
     }
 }

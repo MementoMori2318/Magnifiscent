@@ -7,7 +7,7 @@
     <h2>Register</h2>
     <form action="includes/register.inc.php" method='POST'>
         <input type = "text" name="name" placeholder="Name" >
-        <input type = "text" name="address" placeholder="Username" >
+        <input type = "text" name="address" placeholder="Address" >
         <input type = "email" name="email" placeholder="Email" >
         <input type = "password" name="pwd" placeholder="Password" >
         <input type = "password" name="pwdrepeat" placeholder="Repeat password" >

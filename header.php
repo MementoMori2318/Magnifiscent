@@ -19,7 +19,7 @@
                 <li><a href="">Men</a></li>
                 <li><a href="">Women</a></li>
             </ul>
-           
+                
                 <a href="cart.php" class="cart"><i class='fas fa-shopping-cart'></i>
                 
                 <?php
@@ -29,7 +29,15 @@
                         echo "<span class='badge' id='cart_count'>$count</span>";
                     }
                 } 
-               
+                if(isset($_SESSION["useruid"])) {
+                    //echo "<li><a href = 'profile.php'>Pofile page</a></li>";
+                    echo "<li><a href = 'includes/logout.inc.php'>Log out</a></li>";
+                }
+                else {
+                    //echo "<li><a href = 'register.php'>Register</a></li>";
+                    echo "<li><a href = 'login.php'>Login</a></li>";
+                    
+                }
                 ?>
                 </a>
             

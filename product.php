@@ -3,7 +3,7 @@
     // Start session
     session_start();
 
-    require_once('db.php');
+    require_once('includes\db.php');
     require_once('./component.php');
 
     // Create instance of Createdb class
@@ -37,6 +37,18 @@
             $_SESSION['cart'][0] = $item_array;
         }
     }
+    // if (isset($_POST['add'])) {
+    //     $product_id = $_POST['product_id'];
+    //     $user_id = $_SESSION['user_id'];
+    //     $query = "INSERT INTO cartdb (user_id, product_id) VALUES ('$user_id', '$product_id')";
+    //     $result = mysqli_query($database->getConnection(), $query);
+    //     if ($result) {
+    //         echo '<script>alert("Product added to cart successfully")</script>';
+    //         echo '<script>window.location ="product.php"</script>';
+    //     } else {
+    //         echo '<script>alert("Failed to add product to cart")</script>';
+    //     }
+    // }
    
 ?><!DOCTYPE html>
 <html lang="en">

@@ -1,8 +1,7 @@
 <?php
 
 
-class db
-{
+class db{
         public $servername;
         public $username;
         public $password;

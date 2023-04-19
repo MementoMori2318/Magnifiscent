@@ -2,7 +2,7 @@
     // Start session
     session_start();
 
-    require_once('db.php');
+    require_once('includes\db.php');
     require_once('./component.php');
 
     // Create instance of Createdb class

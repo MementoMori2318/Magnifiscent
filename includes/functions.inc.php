@@ -1,8 +1,18 @@
 <?php
 
-function emptyInputRegister($name, $address, $email,  $pwd, $pwdrepeat ){
+function emptyInputRegister($name, $email, $address , $username, $pwd, $pwdrepeat ){
     $result;
-    if (empty($name) || empty($address) || empty($email) || empty($pwd) || empty($pwdrepeat)) {
+    if (empty($name) || empty($email)|| empty($address) || empty($username) || empty($pwd) || empty($pwdrepeat)) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return  $result;
+}
+function invalidUid($username){
+    $result;
+    if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
         $result = true;
     }
     else {
@@ -30,34 +40,32 @@ function pwdMatch($pwd, $pwdrepeat){
     }
     return  $result;
 }
+function uidExists($conn, $username, $email){
+   $sql = "SELECT * FROM customer WHERE usersUid = ? OR usersEmail = ?;";
+   $stmt = mysqli_stmt_init($conn);
+   if (!mysqli_stmt_prepare($stmt, $sql)) {
+    header("location: ../register.php?error=stmtfailed");
+        exit();
+   }
 
-function uidExists($conn, $name, $email){
-    $sql = "SELECT * FROM customer WHERE customer_name = ? OR customer_email = ?";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-     header("location: ../register.php?error=stmtfailed");
-         exit();
-    }
- 
-    mysqli_stmt_bind_param($stmt, "ss",$name, $email);
-    mysqli_stmt_execute($stmt);
- 
-    $resultData = mysqli_stmt_get_result($stmt);
- 
-    if ($row = mysqli_fetch_assoc($resultData)) {
-     return $row;
-    }
-    else {
-     $result = false;
-     return $result;
-    }
- 
-    mysqli_stmt_close($stmt);
- }
- 
+   mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+   mysqli_stmt_execute($stmt);
 
-function  createUser($conn, $name, $address ,$email, $pwd){
-    $sql = "INSERT INTO customer (customer_name, customer_address, customer_email, customer_password) VALUES (?, ?, ?, ?);";
+   $resultData = mysqli_stmt_get_result($stmt);
+
+   if ($row = mysqli_fetch_assoc($resultData)) {
+    return $row;
+   }
+   else {
+    $result = false;
+    return $result;
+   }
+
+   mysqli_stmt_close($stmt);
+}
+
+function createUser($conn, $name, $email, $address, $username, $pwd){
+    $sql = "INSERT INTO customer (usersName, usersEmail, usersAddress, usersUid, usersPwd) VALUES (?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
          header("location: ../register.php?error=stmtfailed");
@@ -66,16 +74,16 @@ function  createUser($conn, $name, $address ,$email, $pwd){
  
     $hashedPwd =password_hash($pwd, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "ssss", $name, $address ,$email, $hashedPwd);
+    mysqli_stmt_bind_param($stmt, "sssss", $name, $email, $address, $username, $hashedPwd );
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../register.php?error=none");
     exit();
  
  }
- function emptyInputLogin($email, $pwd ){
+ function emptyInputLogin($username, $pwd ){
     $result;
-    if (empty($email) || empty($pwd)) {
+    if (empty($username) || empty($pwd)) {
         $result = true;
     }
     else {
@@ -83,28 +91,27 @@ function  createUser($conn, $name, $address ,$email, $pwd){
     }
     return  $result;
 }
-function loginUser($conn, $name, $pwd){
-    $uidExists = uidExists($conn, $name, $name);
+function loginUser($conn, $username, $pwd){
+    $uidExists = uidExists($conn, $username, $username);
 
-    if ($uidExists === false) {
+    if ($uidExists == false) {
         header("location: ../login.php?error=wronglogin");
         exit();
     }
 
-    $pwdHashed = $uidExists["customer_password"];
+    $pwdHashed = $uidExists["usersPwd"];
     $checkPwd = password_verify($pwd, $pwdHashed);
 
-    if ($checkPwd === false) {
+    if ($checkPwd == false) {
         header("location: ../login.php?error=wronglogin");
         exit();
     }
-    else if ($checkPwd === true) {
+    else if ($checkPwd == true) {
         session_start();
-        $_SESSION["id"] = $uidExists["ID"];
-        $_SESSION["customer_name"] = $uidExists["customer_name"];
-        // $_SESSION["customer_email"] = $uidExists["customer_email"];
+        $_SESSION["userid"] = $uidExists["usersID"];
+        $_SESSION["useruid"] = $uidExists["usersUid"];
         header("location: ../index.php");
         exit();
+
     }
 }
-

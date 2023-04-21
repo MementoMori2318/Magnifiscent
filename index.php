@@ -6,8 +6,7 @@
     require_once('includes\db.php');
     require_once('./component.php');
 
-    // Create instance of Createdb class
-    $database = new db("Magnifiscent", "Products");
+    
     
 ?>
 

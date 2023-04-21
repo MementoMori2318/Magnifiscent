@@ -36,9 +36,11 @@
             $_SESSION['cart'][0] = $item_array;
         }
     }
-    function getData($conn){
+    function getData($conn, $limit = null){
         $sql = "SELECT * FROM Products";
-       
+        if($limit){
+            $sql .= " LIMIT " . $limit;
+        }
         $result = mysqli_query($conn, $sql);
         if(mysqli_num_rows($result) > 0){
             return $result;
@@ -61,7 +63,7 @@
     <div class="container">
         <div class="row">
            <?php
-           
+           $result = getData($conn, 3);
             while($row = mysqli_fetch_assoc($result)){
                 component($row['product_name'],$row['product_price'],$row['product_image'],$row['id']); 
             } 

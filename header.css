@@ -3,6 +3,7 @@
     justify-content: space-evenly;
     align-items: center;
     background-color: #520b74;
+    position: relative;
 }
 ul li{
     text-decoration: none;
@@ -87,4 +88,11 @@ img {
     align-items: center;
     top: 7px;
     right: 5px
-  }
+}
+.user-login {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 1px solid red;
+    list-style: none;
+}

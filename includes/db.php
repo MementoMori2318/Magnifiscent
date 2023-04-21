@@ -16,6 +16,6 @@ if (mysqli_num_rows($result) > 0){
     // handle result data
 }
 
-// close connection
-mysqli_close($conn);
-?>
+
+
+

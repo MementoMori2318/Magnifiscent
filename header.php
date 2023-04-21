@@ -21,7 +21,6 @@
             </ul>
                 
                 <a href="cart.php" class="cart"><i class='fas fa-shopping-cart'></i>
-                
                 <?php
                    if (isset($_SESSION['cart'])){
                     $count = count($_SESSION['cart']);
@@ -29,17 +28,24 @@
                         echo "<span class='badge' id='cart_count'>$count</span>";
                     }
                 } 
-                if(isset($_SESSION["useruid"])) {
-                    //echo "<li><a href = 'profile.php'>Pofile page</a></li>";
-                    echo "<li><a href = 'includes/logout.inc.php'>Log out</a></li>";
-                }
-                else {
-                    //echo "<li><a href = 'register.php'>Register</a></li>";
-                    echo "<li><a href = 'login.php'>Login</a></li>";
-                    
-                }
                 ?>
                 </a>
+                <span class="user-login">
+                    <?php
+                    if(isset($_SESSION["useruid"])) {
+                        //echo "<li><a href = 'profile.php'>Pofile page</a></li>";
+                        echo "<li><a href = 'includes/logout.inc.php'> ". $_SESSION['useruid'] ."</a></li>";
+                    }
+                    else {
+                        //echo "<li><a href = 'register.php'>Register</a></li>";
+                        echo "<li><a href = 'login.php'>Login</a></li>";
+                        
+                    }
+                    ?>
+                </span>
+                
+                
+                
             
            
         </div>

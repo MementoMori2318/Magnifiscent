@@ -7,7 +7,6 @@
     require_once('./component.php');
 
     // Create instance of Createdb class
-    $database = new db("Magnifiscent", "Products");
     
     if (isset($_POST['add'])) {
         $product_id = $_POST['add'];
@@ -37,18 +36,15 @@
             $_SESSION['cart'][0] = $item_array;
         }
     }
-    // if (isset($_POST['add'])) {
-    //     $product_id = $_POST['product_id'];
-    //     $user_id = $_SESSION['user_id'];
-    //     $query = "INSERT INTO cartdb (user_id, product_id) VALUES ('$user_id', '$product_id')";
-    //     $result = mysqli_query($database->getConnection(), $query);
-    //     if ($result) {
-    //         echo '<script>alert("Product added to cart successfully")</script>';
-    //         echo '<script>window.location ="product.php"</script>';
-    //     } else {
-    //         echo '<script>alert("Failed to add product to cart")</script>';
-    //     }
-    // }
+    function getData($conn){
+        $sql = "SELECT * FROM Products";
+       
+        $result = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($result) > 0){
+            return $result;
+        }
+    }
+    
    
 ?><!DOCTYPE html>
 <html lang="en">
@@ -65,7 +61,7 @@
     <div class="container">
         <div class="row">
            <?php
-            $result = $database->getData(5);
+           
             while($row = mysqli_fetch_assoc($result)){
                 component($row['product_name'],$row['product_price'],$row['product_image'],$row['id']); 
             } 

@@ -3,10 +3,10 @@
     session_start();
 
     require_once('includes\db.php');
-    require_once('./component.php');
-
+    require_once('includes\component.php');
+    
     // Create instance of Createdb class
-    $database = new db("Magnifiscent", "Products");
+    
 
     if(isset($_POST['delete'])){
         if($_GET['action'] == 'delete'){

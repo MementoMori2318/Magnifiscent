@@ -1,17 +1,10 @@
 <?php
-function getData($conn, $limit = null){
-        $sql = "SELECT * FROM Products";
-        if($limit){
-            $sql .= " LIMIT " . $limit;
-        }
-        $result = mysqli_query($conn, $sql);
-        if(mysqli_num_rows($result) > 0){
-            return $result;
-        }
-    }
+
 function getProduct($conn){
-    $result = getData($conn, 5);
-    while($row = mysqli_fetch_assoc($result)){
+    // get product data from database
+    $sql = "SELECT * FROM Products ";
+    $result = mysqli_query($conn, $sql);
+    while ( $row = $result->fetch_assoc()){
       echo  "<div class='products'>
         <form method='POST'>
             <div class='card'>

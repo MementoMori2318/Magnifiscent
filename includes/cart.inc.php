@@ -4,7 +4,6 @@ function addToCart($conn) {
     if(isset($_POST['add_to_cart'])){
         $product_id = $_POST['add_to_cart'];
         $user_id = $_SESSION['userid'];
-        echo "User ID: " . $user_id;
         $date = date('Y-m-d H:i:s');
        
         $sql = "SELECT * FROM cartdb WHERE product_id=? AND users_id=?";
@@ -27,7 +26,7 @@ function addToCart($conn) {
             // Product doesn't exist in cart, insert new row
             $sql = "INSERT INTO cartdb (product_id, quantity, users_id, date) VALUES (?, 1, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("iis", $product_id, $user_id, $date);
+            $stmt->bind_param("iii", $product_id, $user_id, $date);
             $stmt->execute();
         }
     }

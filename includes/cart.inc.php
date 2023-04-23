@@ -25,7 +25,7 @@ function addToCart($conn) {
             $stmt->execute();
         } else {
             // Product doesn't exist in cart, insert new row
-            $sql = "INSERT INTO cartdb (product_id, quantity, users_id, date) VALUES ($product_id, 1, $user_id, ?)";
+            $sql = "INSERT INTO cartdb (product_id, quantity, users_id, date) VALUES (?, 1, ?, ?)";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("iis", $product_id, $user_id, $date);
             $stmt->execute();

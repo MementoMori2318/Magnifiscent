@@ -4,7 +4,6 @@
     session_start();
 
     require_once('includes\db.php');
-    require_once('includes\component.php');
     require('includes\cart.inc.php');
   
    

@@ -79,3 +79,53 @@ function getProduct($conn){
 
     }
 }
+
+function displayCartItems($conn) {
+    if(isset($_SESSION['userid'])){
+        $user_id = $_SESSION['userid'];
+        
+        $sql = "SELECT * FROM cartdb WHERE users_id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $product_id = $row['product_id'];
+                $product_sql = "SELECT * FROM products WHERE id=?";
+                $product_stmt = $conn->prepare($product_sql);
+                $product_stmt->bind_param("i", $product_id);
+                $product_stmt->execute();
+                $product_result = $product_stmt->get_result();
+                $product_row = $product_result->fetch_assoc();
+                
+                $product_name = $product_row['product_name'];
+                $product_price = $product_row['product_price'];
+                $product_image = $product_row['product_image'];
+                
+                echo "<form action='cart.php?action=delete&id=$product_id' method='POST' class='cart-items'>
+                <div>
+                    <img src='$product_image' alt='image'>
+                </div>
+                <div class='product-info'>
+                    <h5 class='title'>$product_name</h5>
+                    <h5 class='price'>₱$product_price</h5>
+                    <button class='btn' type='submit' name='delete'>Delete</button>
+                </div>
+                <div>
+                    <form action='' method='POST'>
+                        <button class='minus-btn'><i class='fas fa-minus'></i></button>
+                        <input id='' type='text' value='1' class='counter'></input>
+                        <button class='plus-btn'><i class='fas fa-plus'></i></button>
+                    </form>
+                </div>
+            </form>";
+            }
+        } else {
+            echo "<p>Your cart is empty.</p>";
+        }
+    } else {
+        echo "<p>You must be logged in to view your cart.</p>";
+    }
+}

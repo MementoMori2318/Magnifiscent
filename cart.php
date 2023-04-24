@@ -11,15 +11,6 @@
         header("Location: login.php");
         exit();
     }
-    if(isset($_POST['delete'])){
-        if($_GET['action'] == 'delete'){
-            foreach($_SESSION['cart'] as $key => $value){
-                if($value['product_id'] == $_GET['id']){
-                    unset($_SESSION['cart'][$key]);
-                }
-            }
-        }
-    }
     
 ?>
 

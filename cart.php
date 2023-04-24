@@ -40,38 +40,10 @@
             ?>
         </div>
         <div class="total-item-container">
-            <h3>Order Summary</h3>
-            <hr>
-            <div class="order-sum">
-                <?php
-                if(isset($_SESSION['cart'])){
-                    $count = count($_SESSION['cart']);
-                    echo "<h3>Subtotal($count items)</h3>";
-                } else {
-                    echo "<h3>Subtotal(0)</h3>";
-                }
-                ?>
-                <h3><?php 
-                 if(isset($_SESSION['cart'])){
-                    echo "₱$total";
-                } else {
-                    echo "₱0.00";
-                }
-                ?></h3>
-            </div>
-                <h3>Shipping Fee</h3>
-            <div class="total">
-                <h3>Subtotal</h3>
-                <h3><?php 
-                 if(isset($_SESSION['cart'])){
-                    echo "₱$total";
-                } else {
-                    echo "₱0.00";
-                }
-                ?></h3>
-            </div>  
-                
-           
+            <?php
+             displayOrderSummary($conn);
+            ?>
+       
         </div>
     </div>
    

@@ -129,3 +129,39 @@ function displayCartItems($conn) {
         echo "<p>You must be logged in to view your cart.</p>";
     }
 }
+function displayOrderSummary($conn) {
+    if(isset($_SESSION['userid'])){
+        $user_id = $_SESSION['userid'];
+        
+        $sql = "SELECT * FROM cartdb WHERE users_id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if($result->num_rows > 0){
+            $total_products = 0;
+            $total_price = 0;
+            while($row = $result->fetch_assoc()){
+                $product_id = $row['product_id'];
+                $product_sql = "SELECT * FROM products WHERE id=?";
+                $product_stmt = $conn->prepare($product_sql);
+                $product_stmt->bind_param("i", $product_id);
+                $product_stmt->execute();
+                $product_result = $product_stmt->get_result();
+                $product_row = $product_result->fetch_assoc();
+                
+                $product_price = $product_row['product_price'];
+                
+                $total_products++;
+                $total_price += $product_price;
+            }
+            echo "<div class='order-summary'>
+                    <h2>Order Summary</h2>
+                    <p>Total Products: $total_products</p>
+                    <p>Total Price: ₱$total_price</p>
+                </div>";
+       
+        }
+    } 
+}

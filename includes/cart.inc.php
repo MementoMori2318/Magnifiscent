@@ -32,3 +32,31 @@ function addToCart($conn) {
     }
 }
 
+function getProduct($conn){
+    // get product data from database
+    $sql = "SELECT * FROM Products ";
+    $result = mysqli_query($conn, $sql);
+    while ( $row = $result->fetch_assoc()){
+      echo  "<div class='products'>
+        <form method='POST'>
+            <div class='card'>
+                <div>
+                    <img src='" . $row['product_image'] . "' alt='Image1' class='img'>
+                </div>
+                <div class='card-body'>
+                    <h5 class='title'>" . $row['product_name'] . "</h5>
+                    <h5 class='price'>" . $row['product_price'] . ".00</h5>
+                </div>
+                    <div class='btn-container'>
+                        <button class='btn' type='submit' name='buy'>Buy Now</button>
+                        <form action='" . addToCart($conn) . "' method='POST'>
+                        <button class='btn' type='submit' name='add_to_cart' value='" . $row['id'] . "'>Add to Cart</button>
+                        <input type='hidden' name='product_id' value='" . $row['id'] . "'/>
+                        </form>
+                    </div>   
+            </div>
+        </form>
+    </div>";
+
+    }
+}

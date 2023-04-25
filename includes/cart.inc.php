@@ -6,7 +6,7 @@ function addToCart($conn) {
         $user_id = $_SESSION['userid'];
         $date = date('Y-m-d H:i:s');
        
-        $sql = "SELECT * FROM cartdb WHERE product_id=? AND users_id=?";
+        $sql = "SELECT * FROM cart WHERE product_id=? AND users_id=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ii", $product_id, $user_id);
         $stmt->execute();
@@ -18,27 +18,27 @@ function addToCart($conn) {
             // Product already exists in cart, update quantity
             $row = $result->fetch_assoc();
             $new_quantity = $row['product_quantity'] + 1;
-            $sql = "UPDATE cartdb SET product_quantity=?, date=? WHERE id=?";
+            $sql = "UPDATE cart SET product_quantity=?, date=? WHERE id=?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("iss", $new_quantity, $date, $row['id']);
             $stmt->execute();
         } else {
             // Product doesn't exist in cart, insert new row
-            $sql = "INSERT INTO cartdb (product_id, product_quantity, users_id, date) VALUES (?, 1, ?, ?)";
+            $sql = "INSERT INTO cart (product_id, product_quantity, users_id, date) VALUES (?, 1, ?, ?)";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("iii", $product_id, $user_id, $date);
             $stmt->execute();
         }
 
-        // Update cart_total in cartdb
-        $sql = "SELECT SUM(product_quantity) AS total FROM cartdb WHERE users_id=?";
+        // Update cart_total in cart
+        $sql = "SELECT SUM(product_quantity) AS total FROM cart WHERE users_id=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
         $cart_total = $row['total'];
-        $sql = "UPDATE cartdb SET cart_total=? WHERE users_id=?";
+        $sql = "UPDATE cart SET cart_total=? WHERE users_id=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ii", $cart_total, $user_id);
         $stmt->execute();
@@ -84,7 +84,7 @@ function displayCartItems($conn) {
     if(isset($_SESSION['userid'])){
         $user_id = $_SESSION['userid'];
         
-        $sql = "SELECT * FROM cartdb WHERE users_id=?";
+        $sql = "SELECT * FROM cart WHERE users_id=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
@@ -133,7 +133,7 @@ function displayOrderSummary($conn) {
     if(isset($_SESSION['userid'])){
         $user_id = $_SESSION['userid'];
         
-        $sql = "SELECT * FROM cartdb WHERE users_id=?";
+        $sql = "SELECT * FROM cart WHERE users_id=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $user_id);
         $stmt->execute();

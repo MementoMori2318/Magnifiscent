@@ -1,9 +1,9 @@
 <?php
     include_once 'header.php';
 ?>
-<link rel="stylesheet" href="css/register-login.css">
+<link rel="stylesheet" href="register_login.css">
      <div class="register-form-container">
-    <section class="register-form">
+    <section class="login-form">
     <h2>Log In</h2>
     <form action="includes/login.inc.php" method="post">
         <input type = "text" name="uid" placeholder="Username/Email">

@@ -7,18 +7,12 @@
             <h2>Register</h2>
             <form action="includes/register.inc.php" method='POST'>
                 <div class="register-form-input">
-                    <div class="inputs">
-                        <input type = "text" name="name" placeholder="Name" >
+                        <input clas type = "text" name="name" placeholder="Name" >
                         <input type = "text" name="uid" placeholder="Username" >
-                    </div>
-                        <input type = "email" name="email" placeholder="Email" >
-                        <br>
+                        <input type = "email" name="email" placeholder="Email" >  
                         <input type = "text" name="address" placeholder="Address" >
-                    
-                    <div class="inputs">
                         <input type = "password" name="pwd" placeholder="Password" >
                         <input type = "password" name="pwdrepeat" placeholder="Repeat password" >
-                    </div>
                 </div>
                 <button type = "submit" name = "submit">Register</button>
                 <a href = 'login.php'><p class="register_link">Already Registered Login Here.</p></a>

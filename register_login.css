@@ -17,20 +17,25 @@ body {
     box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 .register-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
+    width: 70vw;
+    height: 80vh;
     border-radius: 4px;
     box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 .register-form-input {
-    display: grid;
-    grid-template-columns: 50% 50%;
+    padding-top: 70px;
 }
-.register-form-input ,.left , .right{
-     
+.register-form-input .inputs{
+    display: flex;
+    justify-content: space-evenly;
+   
+  
 }
+.inputs {
+    padding: 10px;
+    margin: 10px;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -60,9 +65,14 @@ input, button{
     margin-bottom: 15px;
 }
 h2 {
+    text-align: center;
+    background-color: #000000;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    margin: 0;
     padding: 10px;
     font-size: 30px;
-    color: #2F4B5E;
+    color: pink;
     font-family: 'PT Sans', sans-serif;
 }
 .register_link {

@@ -5,17 +5,30 @@
     <div class="register-form-container">
     <section class="register-form">    
             <h2>Register</h2>
-            <form action="includes/register.inc.php" method='POST'>
+            <form class="register-form-grid" action="includes/register.inc.php" method='POST'>
                 <div class="register-form-input">
-                        <input clas type = "text" name="name" placeholder="Name" >
-                        <input type = "text" name="uid" placeholder="Username" >
-                        <input type = "email" name="email" placeholder="Email" >  
-                        <input type = "text" name="address" placeholder="Address" >
-                        <input type = "password" name="pwd" placeholder="Password" >
-                        <input type = "password" name="pwdrepeat" placeholder="Repeat password" >
+                    <input type = "text" name="name" placeholder="Name" >
                 </div>
+                <div class="register-form-input">
+                    <input type = "text" name="uid" placeholder="Username" >
+                </div>
+                <div class="register-form-input form-full-widht">
+                    <input type = "email" name="email" placeholder="Email" > 
+                </div>
+                <div class="register-form-input form-full-widht"> 
+                    <input type = "text" name="address" placeholder="Address" >
+                </div>
+                <div class="register-form-input">
+                    <input type = "password" name="pwd" placeholder="Password" >
+                </div>
+                <div class="register-form-input">
+                    <input type = "password" name="pwdrepeat" placeholder="Repeat password" >
+                </div>
+                    
+                <div class="register-form-input form-full-widht"> 
                 <button type = "submit" name = "submit">Register</button>
                 <a href = 'login.php'><p class="register_link">Already Registered Login Here.</p></a>
+                </div>
             <?php
             if (isset($_GET["error"])) {
                 if ($_GET["error"] == "emptyinput") {

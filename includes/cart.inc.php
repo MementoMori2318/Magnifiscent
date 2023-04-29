@@ -2,9 +2,10 @@
 ob_start();
 function addToCart($conn) {
     if(isset($_POST['add_to_cart'])){
-        $product_id = $_POST['add_to_cart'];
-        $user_id = $_SESSION['userid'];
-        $date = date('Y-m-d H:i:s');
+        if(isset($_SESSION['userid'])){
+            $product_id = $_POST['add_to_cart'];
+            $user_id = $_SESSION['userid'];
+            $date = date('Y-m-d H:i:s');
        
         $sql = "SELECT * FROM cart WHERE product_id=? AND users_id=?";
         $stmt = $conn->prepare($sql);
@@ -49,6 +50,11 @@ function addToCart($conn) {
         $stmt->bind_param("ii", $cart_total, $user_id);
         $stmt->execute();
         }
+        else {
+            header("Location: login.php");
+            exit();
+        }
+    }
 }
 
 function getProduct($conn){

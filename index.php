@@ -31,7 +31,31 @@
             <a href="product.php">EXPLORE OUR SCENT<i class="fa-solid fa-arrow-right"></i></a>
         </div>
         <div class="hero-img">
+                <div class="small-card hero-card">
 
+                </div>
+                <div class="big-card hero-card">
+
+                </div>
+                <div class="small-card hero-card">
+                    
+                </div>
+                <div class="big-card hero-card">
+                    
+                </div>
+                <div class="small-card hero-card">
+                    
+                    </div>
+                <div class="big-card hero-card">
+                    
+                </div>
+                <div class="small-card hero-card">
+                    
+                    </div>
+                <div class="big-card hero-card">
+                    
+                </div>  
+            
         </div>
     </div>
     <!-- ENd HERO -->

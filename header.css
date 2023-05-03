@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #520b74;
+    background-color: #000;
     position: relative;
 }
 ul li{
@@ -17,15 +17,13 @@ a {
     list-style: none;
     display: inline-block;
     font-size: 20px;
-    font-weight: 600;
-    color: #d8d2d2;
+    color: #FF99CC;
     padding: 3px 10px;
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Libre Baskerville', serif;
     
 }
 a:hover {
-    color: #FFFFFF;
-
+    color: #F77FBE;
 }
 ul li ul {
     display: none;

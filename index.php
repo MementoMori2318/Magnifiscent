@@ -28,7 +28,12 @@
         <div class="hero-title">
             <h1>MagnifiScent</h1>
             <h5>Perfume is a journey that starts on the skin and continues to the soul.</h5>
-            <a href="product.php">EXPLORE OUR SCENT<i class="fa-solid fa-arrow-right"></i></a>
+            <a class="fancy" href="product.php">
+                <span class="top-key"></span>
+                <span class="text">EXPLORE OUR SCENT</span>
+                <span class="bottom-key-1"></span>
+                <span class="bottom-key-2"></span>
+            </a>
         </div>
         <div class="hero-img">
                 <div class="small-card hero-card">

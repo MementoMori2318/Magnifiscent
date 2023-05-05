@@ -18,7 +18,7 @@ function addToCart($conn) {
             if($num_rows > 0){
                 // Product already exists in cart, update quantity
                 $row = $result->fetch_assoc();
-                $new_quantity = $row['product_quantity'] + 1;
+                $new_quantity = $row['product_quantity'] ++;
                 $sql = "UPDATE cart SET product_quantity=?, date=? WHERE id=?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("iss", $new_quantity, $date, $row['id']);
@@ -49,6 +49,9 @@ function addToCart($conn) {
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ii", $cart_total, $user_id);
             $stmt->execute();
+            
+            // Set $_SESSION['cart_total'] to updated cart_total
+            $_SESSION['cart_total'] = $cart_total;
         }
         else {
             header("Location: login.php");
@@ -56,6 +59,7 @@ function addToCart($conn) {
         }
     }
 }
+
 
 
 function getProduct($conn){
@@ -91,15 +95,48 @@ if(isset($_GET['action']) && $_GET['action'] == 'delete') {
     $product_id = $_GET['id'];
     $user_id = $_SESSION['userid'];
     
+    // Get the current product quantity before deleting the item from the cart
+    $sql = "SELECT product_quantity FROM cart WHERE users_id=? AND product_id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $user_id, $product_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $product_quantity = $row['product_quantity'];
+    
+    // Delete the item from the cart
     $delete_sql = "DELETE FROM cart WHERE users_id=? AND product_id=?";
     $delete_stmt = $conn->prepare($delete_sql);
     $delete_stmt->bind_param("ii", $user_id, $product_id);
     $delete_stmt->execute();
     
     if($delete_stmt->affected_rows > 0) {
+        // Update the cart_total after deleting the item from the cart
+        $sql = "SELECT SUM(product_quantity) AS total FROM cart WHERE users_id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $cart_total = $row['total'];
+        $sql = "UPDATE cart SET cart_total=? WHERE users_id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $cart_total, $user_id);
+        $stmt->execute();
+
+        // Update the cart_total in the customer table
+        $sql = "UPDATE customer SET cart_total=? WHERE usersid=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $cart_total, $user_id);
+        $stmt->execute();
+
+        // Update the session cart_total variable
+        $_SESSION['cart_total'] = $cart_total;
+        
         header("Location: cart.php");
     }
 }
+
 
 function displayCartItems($conn) {
     if(isset($_SESSION['userid'])){

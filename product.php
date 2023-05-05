@@ -23,6 +23,7 @@
         <div class="row">
            <?php
                 getProduct($conn); 
+              
            ?>
         </div>
     </div>

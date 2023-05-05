@@ -20,30 +20,28 @@
                 <li><a href="">Women</a></li>
             </ul>
             <a href="cart.php" class="cart">
-                <i class='fas fa-shopping-cart'></i>
-                <span id="cart-total"></span>
-            </a>
-    <script>
+    <i class='fas fa-shopping-cart'></i> 
+    <span id="cart-total"><?php echo $_SESSION['cart_total']; ?></span>
+</a>
+            <script>
+    // Function to update cart total
+    function updateCartTotal() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("cart-total").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "get_cart_total.php", true);
+        xhttp.send();
+    }
 
-                function getCartTotal() {
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            document.getElementById("cart-total").innerHTML = this.responseText;
-                        }
-                    };
-                    xhttp.open("GET", "get_cart_total.php", true);
-                    xhttp.send();
-                }
+    // Call updateCartTotal() on page load
+    updateCartTotal();
 
-                getCartTotal(); // Call the function when the page loads to display the initial cart total
-
-                // Refresh the cart total every 5 seconds
-                setInterval(function() {
-                    getCartTotal();
-                }, 5000);
-
-    </script>
+    // Call updateCartTotal() every 5 seconds (5000 milliseconds)
+    setInterval(updateCartTotal, 5000);
+</script>
             <!-- <a href="cart.php" class="cart">
                 <i class='fas fa-shopping-cart'></i>
                 <span class="cart-total">

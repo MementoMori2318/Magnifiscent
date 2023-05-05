@@ -1,13 +1,11 @@
 <?php
-
     // Start session
     session_start();
+    require_once('includes/db.php');
+    require('includes/cart.inc.php');
+?>
 
-    require_once('includes\db.php');
-    require('includes\cart.inc.php');
-  
-   
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,16 +15,23 @@
     <title></title>
 </head>
 <body>
-    <?php require("header.php")?>
+    <?php require("header.php"); ?>
+    
     <!-- START Product -->
     <div class="container">
         <div class="row">
            <?php
                 getProduct($conn); 
-              
            ?>
         </div>
     </div>
     <!--END Product -->
+
+    <script>
+        window.onload = function() {
+            var scrollPosition = <?php echo isset($_GET['scroll']) ? $_GET['scroll'] : '0'; ?>;
+            window.scrollTo(0, scrollPosition);
+        };
+    </script>
 </body>
 </html>

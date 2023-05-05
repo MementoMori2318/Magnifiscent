@@ -5,7 +5,7 @@ body {
     padding: 0px;
     margin: 0px;
     font-family: 'Roboto', sans-serif;
-    background-color:#F77FBE;
+   
 }
 /* Hero style start*/
 .hero-container {
@@ -133,17 +133,21 @@ body {
 }
 /* Hero style end */
 .container {
-    padding: 20px 20px 20px 20px;
-    display: grid;
-    
+    margin: 20px;
+    padding: 20px;
     
 }
-.row {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 20px;
-    align-items: center;
-  }
+@media (min-width: 40em) {
+    .row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 20px;
+        width: 100%;
+        margin: 20px;
+        padding: 20px;
+      }
+}
+
 
   .card {
     display: flex;
@@ -153,7 +157,7 @@ body {
     width: 200px;
     height: 294px;
     padding: .8em;
-    background: #4C454C;
+    background: #0f0f0f;
     position: relative;
     overflow: visible;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -162,7 +166,8 @@ body {
 }
 
 .card-img {
-    background-color: #FF99CC;
+    background: #F93B96;
+    background: radial-gradient(at center, #F93B96, #F5B5DB);
     height: 40%;
     width: 100%;
     border-radius: .5rem;
@@ -222,7 +227,7 @@ body {
    /*Hover*/
    .card-img:hover {
     transform: translateY(-25%);
-    box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
+    box-shadow: rgba(240, 51, 98, 0.25) 0px 13px 47px -5px, rgba(173, 30, 102, 0.199) 0px 8px 16px -8px;
    }
    
    .card-button:hover {

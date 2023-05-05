@@ -62,8 +62,7 @@ function getProduct($conn){
     $sql = "SELECT * FROM Products ";
     $result = mysqli_query($conn, $sql);
     while ( $row = $result->fetch_assoc()){
-      echo  "
-      <div class='products'>
+      echo  " <div class='products'>
             <form method='POST'>
                 <div class='card'>
                 <div class='card-img'> <img src='" . $row['product_image'] . "' alt='Image1' class='img'></div>
@@ -85,26 +84,19 @@ function getProduct($conn){
                 </div></div>
             </form>
         </div>";
-     
-    //  
-    //         <div class='card'>
-    //             <div>
-                   
-    //             </div>
-    //             <div class='card-body'>
-    //                 <h5 class='title'>" . $row['product_name'] . "</h5>
-    //                 <h5 class='price'></h5>
-    //             </div>
-    //                 <div class='btn-container'>
-    //                     <button class='btn' type='submit' name='buy'>Buy Now</button>
-                        
-    //                     <button class='btn' type='submit' name='add_to_cart' value='" . $row['id'] . "'>Add to Cart</button>
-                        
-                       
-    //                 </div>   
-    //         </div>
+    }
+}
+if(isset($_GET['action']) && $_GET['action'] == 'delete') {
+    $product_id = $_GET['id'];
+    $user_id = $_SESSION['userid'];
     
-
+    $delete_sql = "DELETE FROM cart WHERE users_id=? AND product_id=?";
+    $delete_stmt = $conn->prepare($delete_sql);
+    $delete_stmt->bind_param("ii", $user_id, $product_id);
+    $delete_stmt->execute();
+    
+    if($delete_stmt->affected_rows > 0) {
+        header("Location: cart.php");
     }
 }
 

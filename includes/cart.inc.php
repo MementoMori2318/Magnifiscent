@@ -18,7 +18,8 @@ function addToCart($conn) {
             if($num_rows > 0){
                 // Product already exists in cart, update quantity
                 $row = $result->fetch_assoc();
-                $new_quantity = $row['product_quantity'] ++;
+                $current_quantity = (int) $row['product_quantity'];
+                $new_quantity = $current_quantity + 1;
                 $sql = "UPDATE cart SET product_quantity=?, date=? WHERE id=?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("iss", $new_quantity, $date, $row['id']);

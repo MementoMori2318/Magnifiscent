@@ -7,48 +7,48 @@ function addToCart($conn) {
             $user_id = $_SESSION['userid'];
             $date = date('Y-m-d H:i:s');
        
-        $sql = "SELECT * FROM cart WHERE product_id=? AND users_id=?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ii", $product_id, $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
+            $sql = "SELECT * FROM cart WHERE product_id=? AND users_id=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ii", $product_id, $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-        $num_rows = $result->num_rows;
+            $num_rows = $result->num_rows;
 
-        if($num_rows > 0){
-            // Product already exists in cart, update quantity
+            if($num_rows > 0){
+                // Product already exists in cart, update quantity
+                $row = $result->fetch_assoc();
+                $new_quantity = $row['product_quantity'] + 1;
+                $sql = "UPDATE cart SET product_quantity=?, date=? WHERE id=?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("iss", $new_quantity, $date, $row['id']);
+                $stmt->execute();
+            } else {
+                // Product doesn't exist in cart, insert new row
+                $sql = "INSERT INTO cart (product_id, product_quantity, users_id, date) VALUES (?, 1, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("iii", $product_id, $user_id, $date);
+                $stmt->execute();
+            }
+
+            // Update cart_total in cart
+            $sql = "SELECT SUM(product_quantity) AS total FROM cart WHERE users_id=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
             $row = $result->fetch_assoc();
-            $new_quantity = $row['product_quantity'] + 1;
-            $sql = "UPDATE cart SET product_quantity=?, date=? WHERE id=?";
+            $cart_total = $row['total'];
+            $sql = "UPDATE cart SET cart_total=? WHERE users_id=?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("iss", $new_quantity, $date, $row['id']);
+            $stmt->bind_param("ii", $cart_total, $user_id);
             $stmt->execute();
-        } else {
-            // Product doesn't exist in cart, insert new row
-            $sql = "INSERT INTO cart (product_id, product_quantity, users_id, date) VALUES (?, 1, ?, ?)";
+
+            // Update cart_total in customer table
+            $sql = "UPDATE customer SET cart_total=? WHERE usersid=?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("iii", $product_id, $user_id, $date);
+            $stmt->bind_param("ii", $cart_total, $user_id);
             $stmt->execute();
-        }
-
-        // Update cart_total in cart
-        $sql = "SELECT SUM(product_quantity) AS total FROM cart WHERE users_id=?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $cart_total = $row['total'];
-        $sql = "UPDATE cart SET cart_total=? WHERE users_id=?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ii", $cart_total, $user_id);
-        $stmt->execute();
-
-        // Update cart_total in customer table
-        $sql = "UPDATE customer SET cart_total=? WHERE usersid=?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ii", $cart_total, $user_id);
-        $stmt->execute();
         }
         else {
             header("Location: login.php");
@@ -56,6 +56,7 @@ function addToCart($conn) {
         }
     }
 }
+
 
 function getProduct($conn){
     // get product data from database
@@ -160,7 +161,7 @@ function displayOrderSummary($conn) {
         $result = $stmt->get_result();
         
         if($result->num_rows > 0){
-            $total_products = 0;
+            $cart_total = 0;
             $total_price = 0;
             while($row = $result->fetch_assoc()){
                 $product_id = $row['product_id'];
@@ -172,16 +173,22 @@ function displayOrderSummary($conn) {
                 $product_row = $product_result->fetch_assoc();
                 
                 $product_price = $product_row['product_price'];
+                $product_quantity = $row['product_quantity'];
                 
-                $total_products++;
-                $total_price += $product_price;
+                $cart_total += $product_quantity;
+                $total_price += $product_price * $product_quantity;
             }
             echo "<div class='order-summary'>
                     <h2>Order Summary</h2>
-                    <p>Total Products: $total_products</p>
+                    <p>Total Products: $cart_total</p>
                     <p>Total Price: ₱$total_price</p>
                 </div>";
-       
+        } else {
+            // Display message when cart is empty
+            echo "<div class='order-summary'>
+                    <h2>Order Summary</h2>
+                    <p>Your cart is empty.</p>
+                </div>";
         }
     } 
 }

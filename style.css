@@ -145,7 +145,7 @@ body {
     align-items: center;
   }
 
-.card {
+  .card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -157,22 +157,25 @@ body {
     position: relative;
     overflow: visible;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-   }
-   
-   .card-img {
+}
+
+.card-img {
     background-color: #ffcaa6;
     height: 40%;
     width: 100%;
     border-radius: .5rem;
     transition: .3s ease;
-    display: grid;
-    place-items: center;
-   }
-   .card-img > .img {
- 
+    overflow: hidden;
+    object-position:center;
+}
+
+.img {
+    object-fit: contain;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
+
    
    .card-info {
     padding-top: 10%;

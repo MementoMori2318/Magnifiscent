@@ -19,7 +19,8 @@ function addToCart($conn) {
                 // Product already exists in cart, update quantity
                 $row = $result->fetch_assoc();
                 $current_quantity = (int) $row['product_quantity'];
-                $new_quantity = $current_quantity ++;
+                $current_quantity++;
+                $new_quantity = $current_quantity;
                 $sql = "UPDATE cart SET product_quantity=?, date=? WHERE id=?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("iss", $new_quantity, $date, $row['id']);
@@ -51,7 +52,7 @@ function addToCart($conn) {
             $stmt->bind_param("ii", $cart_total, $user_id);
             $stmt->execute();
             
-            // Set $_SESSION['cart_total'] to updated cart_total
+            // Update $_SESSION['cart_total']
             $_SESSION['cart_total'] = $cart_total;
 
             // Update cart total using AJAX
@@ -71,8 +72,8 @@ function addToCart($conn) {
                 updateCartTotal();
 
                 // Call updateCartTotal() every 5 seconds (5000 milliseconds)
-                setInterval(updateCartTotal, 1000);
-                </script>";
+                setInterval(updateCartTotal, 1000);";
+                echo "</script>";
         }
         else {
             header("Location: login.php");

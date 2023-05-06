@@ -66,27 +66,28 @@ img {
 }
 .cart {
     position: relative;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  }
   
-}
-.cart span {
-    user-select: none;
+  .cart i {
+    position: relative;
+    font-size: 24px;
+    color: white;
+  }
+  
+  .cart #cart-total {
     position: absolute;
-    background: red;
-    height: 15px;
-    width: 3px;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    line-height: 20px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
     border-radius: 50%;
-    font-size: .8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 7px;
-    right: 5px
-}
+  }
+  
 .user-login {
     position: absolute;
     top: 5px;

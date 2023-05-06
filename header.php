@@ -20,11 +20,10 @@
                 <li><a href="">Women</a></li>
             </ul>
             <a href="cart.php" class="cart">
-                 <i class='fas fa-shopping-cart'></i> 
-                <?php if(isset($_SESSION['cart_total']) && $_SESSION['cart_total'] > 0) { ?>
-                    <span id="cart-total"><?php echo $_SESSION['cart_total']; ?></span>
-                <?php } ?>
+                <i class='fas fa-shopping-cart'></i> 
+                <span id="cart-total"><?php echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?></span>
             </a>
+
              <span class="user-login">
                     <?php
                     if(isset($_SESSION["useruid"])) {
@@ -38,10 +37,12 @@
                     }
                     ?>
                 </span>
-                
-                
-                
-            
+                <script>
+                    window.onload = function() {
+                        var scrollPosition = <?php echo isset($_GET['scroll']) ? $_GET['scroll'] : '0'; ?>;
+                        window.scrollTo(0, scrollPosition);
+                    };
+                </script>      
            
         </div>
     </nav>

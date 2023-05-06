@@ -20,36 +20,12 @@
                 <li><a href="">Women</a></li>
             </ul>
             <a href="cart.php" class="cart">
-    <i class='fas fa-shopping-cart'></i> 
-    <span id="cart-total"><?php echo $_SESSION['cart_total']; ?></span>
-</a>
-            <script>
-    // Function to update cart total
-    function updateCartTotal() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("cart-total").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", "get_cart_total.php", true);
-        xhttp.send();
-    }
-
-    // Call updateCartTotal() on page load
-    updateCartTotal();
-
-    // Call updateCartTotal() every 5 seconds (5000 milliseconds)
-    setInterval(updateCartTotal, 5000);
-</script>
-            <!-- <a href="cart.php" class="cart">
-                <i class='fas fa-shopping-cart'></i>
-                <span class="cart-total">
-                    <//?php echo $_SESSION['cart_total']; ?>
-                </span>
-            </a> -->
-
-                <span class="user-login">
+                 <i class='fas fa-shopping-cart'></i> 
+                <?php if(isset($_SESSION['cart_total']) && $_SESSION['cart_total'] > 0) { ?>
+                    <span id="cart-total"><?php echo $_SESSION['cart_total']; ?></span>
+                <?php } ?>
+            </a>
+             <span class="user-login">
                     <?php
                     if(isset($_SESSION["useruid"])) {
                         //echo "<li><a href = 'profile.php'>Pofile page</a></li>";

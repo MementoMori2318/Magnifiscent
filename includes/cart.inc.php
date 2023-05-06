@@ -19,7 +19,7 @@ function addToCart($conn) {
                 // Product already exists in cart, update quantity
                 $row = $result->fetch_assoc();
                 $current_quantity = (int) $row['product_quantity'];
-                $new_quantity = $current_quantity + 1;
+                $new_quantity = $current_quantity ++;
                 $sql = "UPDATE cart SET product_quantity=?, date=? WHERE id=?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("iss", $new_quantity, $date, $row['id']);
@@ -53,6 +53,26 @@ function addToCart($conn) {
             
             // Set $_SESSION['cart_total'] to updated cart_total
             $_SESSION['cart_total'] = $cart_total;
+
+            // Update cart total using AJAX
+            echo "<script>
+                function updateCartTotal() {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById('cart-total').innerHTML = this.responseText;
+                        }
+                    };
+                    xhttp.open('GET', 'get_cart_total.php', true);
+                    xhttp.send();
+                }
+
+                // Call updateCartTotal() on page load
+                updateCartTotal();
+
+                // Call updateCartTotal() every 5 seconds (5000 milliseconds)
+                setInterval(updateCartTotal, 1000);
+                </script>";
         }
         else {
             header("Location: login.php");

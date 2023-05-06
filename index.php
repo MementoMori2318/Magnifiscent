@@ -21,7 +21,7 @@
 </head>
 <body>
 
-    <?php require("header.php")?>
+<?php require("header.php"); ?>
     
     <!-- START HERO -->
     <div class="hero-container">

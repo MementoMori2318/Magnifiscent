@@ -27,11 +27,6 @@
     </div>
     <!--END Product -->
 
-    <script>
-        window.onload = function() {
-            var scrollPosition = <?php echo isset($_GET['scroll']) ? $_GET['scroll'] : '0'; ?>;
-            window.scrollTo(0, scrollPosition);
-        };
-    </script>
+   
 </body>
 </html>

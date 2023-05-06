@@ -2,15 +2,18 @@ body {
     padding: 0px;
     margin: 0px;
     font-family: 'Roboto', sans-serif;
-    
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(-45deg, #FFC796 0%, #FF6B95 100%);
 }
 .container {
+    
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 10px;
     padding: 10px;
-    
+   
 }
 @media (min-width: 40em) {
     .row {

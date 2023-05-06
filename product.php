@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="style.css" href="styles.css?version=51">
+    <link rel="stylesheet" href="product.css" href="styles.css?version=51">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
 </head>

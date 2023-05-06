@@ -23,7 +23,14 @@
                 <i class='fas fa-shopping-cart'></i> 
                 <span id="cart-total"><?php echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?></span>
             </a>
-
+            <script>
+                window.addEventListener('DOMContentLoaded', function() {
+                    const cartTotal = document.getElementById('cart-total');
+                    if (cartTotal && parseInt(cartTotal.textContent) === 0) {
+                        cartTotal.style.display = 'none';
+                    }
+                });
+            </script>
              <span class="user-login">
                     <?php
                     if(isset($_SESSION["useruid"])) {

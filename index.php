@@ -50,7 +50,7 @@
                 </div>
                 <div class="small-card hero-card">
                     
-                    </div>
+                </div>
                 <div class="big-card hero-card">
                     
                 </div>

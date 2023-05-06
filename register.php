@@ -6,29 +6,35 @@
     <section class="register-form">    
             <h2>Register</h2>
             <form class="register-form-grid" action="includes/register.inc.php" method='POST'>
-                <div class="register-form-input">
-                    <input type = "text" name="name" placeholder="Name" >
+                <div class="register-form-input form__group field">
+                    <input type = "text" name="name" placeholder="Name" class="form__field">
+                    <label for="name" class="form__label">Name</label>
                 </div>
-                <div class="register-form-input">
-                    <input type = "text" name="uid" placeholder="Username" >
+                <div class="register-form-input form__group field">
+                    <input type = "text" name="uid" placeholder="Username" class="form__field">
+                    <label for="name" class="form__label">Username</label>
                 </div>
-                <div class="register-form-input form-full-widht">
-                    <input type = "email" name="email" placeholder="Email" > 
+                <div class="register-form-input form-full-widht form__group field">
+                    <input type = "email" name="email" placeholder="Email" class="form__field"> 
+                    <label for="name" class="form__label">Email</label>
                 </div>
-                <div class="register-form-input form-full-widht"> 
-                    <input type = "text" name="address" placeholder="Address" >
+                <div class="register-form-input form-full-widht form__group field"> 
+                    <input type = "text" name="address" placeholder="Address" class="form__field">
+                    <label for="name" class="form__label">Address</label>
                 </div>
-                <div class="register-form-input">
-                    <input type = "password" name="pwd" placeholder="Password" >
+                <div class="register-form-input form__group field">
+                    <input type = "password" name="pwd" placeholder="Password" class="form__field">
+                    <label for="name" class="form__label">Password</label>
                 </div>
-                <div class="register-form-input">
-                    <input type = "password" name="pwdrepeat" placeholder="Repeat password" >
+                <div class="register-form-input form__group field">
+                    <input type = "password" name="pwdrepeat" placeholder="Repeat password" class="form__field">
+                    <label for="name" class="form__label">Repeat password</label>
                 </div>
-                    
                 <div class="register-form-input form-full-widht"> 
                 <button type = "submit" name = "submit">Register</button>
                 <a href = 'login.php'><p class="register_link">Already Registered Login Here.</p></a>
                 </div>
+            <div class="register-form-input form-full-widht"> 
             <?php
             if (isset($_GET["error"])) {
                 if ($_GET["error"] == "emptyinput") {
@@ -55,6 +61,7 @@
             }
 
             ?> 
+            </div>
             </form>
-            </section>
+    </section>
     </div>

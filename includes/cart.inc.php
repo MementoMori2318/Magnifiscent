@@ -183,22 +183,27 @@ function displayCartItems($conn) {
                 $product_name = $product_row['product_name'];
                 $product_price = $product_row['product_price'];
                 $product_image = $product_row['product_image'];
+                $product_quantity = $row['product_quantity'];
                 
                 echo "<form action='cart.php?action=delete&id=$product_id' method='POST' class='cart-items'>
                 <div>
                     <img src='$product_image' alt='image'>
                 </div>
+               
                 <div class='product-info'>
                     <h5 class='title'>$product_name</h5>
                     <h5 class='price'>₱$product_price</h5>
                     <button class='btn' type='submit' name='delete'>Delete</button>
                 </div>
+
                 <div>
-                    <form action='' method='POST'>
-                        <button class='minus-btn'><i class='fas fa-minus'></i></button>
-                        <input id='' type='text' value='1' class='counter'></input>
-                        <button class='plus-btn'><i class='fas fa-plus'></i></button>
-                    </form>
+                <form action='cart.php?action=update_quantity' method='POST'>
+                    <input type='hidden' name='product_id' value='$product_id'>
+                    <button class='minus-btn' type='submit' name='minus'><i class='fas fa-minus'></i></button>
+                    <input type='text' name='quantity' value='$product_quantity' class='counter'>
+                    <button class='plus-btn' type='submit' name='plus'><i class='fas fa-plus'></i></button>
+                </form>
+            
                 </div>
             </form>";
             }
@@ -209,6 +214,84 @@ function displayCartItems($conn) {
         echo "<p>You must be logged in to view your cart.</p>";
     }
 }
+
+function updateProductQuantity($conn, $product_id, $user_id, $new_quantity) {
+    $date = date('Y-m-d H:i:s');
+    
+    // Update product quantity in cart
+    $sql = "UPDATE cart SET product_quantity=?, date=? WHERE product_id=? AND users_id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("issi", $new_quantity, $date, $product_id, $user_id);
+    $stmt->execute();
+    
+    // Update cart_total in cart
+    $sql = "SELECT SUM(product_quantity) AS total FROM cart WHERE users_id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $cart_total = $row['total'];
+    $sql = "UPDATE cart SET cart_total=? WHERE users_id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $cart_total, $user_id);
+    $stmt->execute();
+
+    // Update cart_total in customer table
+    $sql = "UPDATE customer SET cart_total=? WHERE usersid=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $cart_total, $user_id);
+    $stmt->execute();
+    
+    // Update $_SESSION['cart_total']
+    $_SESSION['cart_total'] = $cart_total;
+
+    // Update cart total using AJAX
+    echo "<script>
+        function updateCartTotal() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById('cart-total').innerHTML = this.responseText;
+                }
+            };
+            xhttp.open('GET', 'get_cart_total.php', true);
+            xhttp.send();
+        }
+
+        // Call updateCartTotal() on page load
+        updateCartTotal();
+
+        // Call updateCartTotal() every 5 seconds (5000 milliseconds)
+        setInterval(updateCartTotal, 1000);";
+        echo "</script>";
+}
+if(isset($_POST['minus']) || isset($_POST['plus'])) {
+    $product_id = $_POST['product_id'];
+    $user_id = $_SESSION['userid'];
+    $sql = "SELECT product_quantity FROM cart WHERE product_id=? AND users_id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $product_id, $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $current_quantity = (int) $row['product_quantity'];
+    $new_quantity = $current_quantity;
+
+    if(isset($_POST['minus'])) {
+        $new_quantity = $current_quantity - 1;
+        if($new_quantity < 1) {
+            $new_quantity = 1;
+        }
+    }
+
+    if(isset($_POST['plus'])) {
+        $new_quantity = $current_quantity + 1;
+    }
+
+    updateProductQuantity($conn, $product_id, $user_id, $new_quantity);
+}
+
 function displayOrderSummary($conn) {
     if(isset($_SESSION['userid'])){
         $user_id = $_SESSION['userid'];

@@ -210,7 +210,29 @@ function displayCartItems($conn) {
     } else {
         echo "<p>You must be logged in to view your cart.</p>";
     }
+    ?>
+    <script>
+            const minusBtns = document.querySelectorAll('.minus-btn');
+            const plusBtns = document.querySelectorAll('.plus-btn');
+            const counters = document.querySelectorAll('.counter');
 
+            minusBtns.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                const currentCount = parseInt(counters[index].value);
+                if (currentCount > 1) {
+                    counters[index].value = currentCount - 1;
+                }
+                });
+            });
+
+            plusBtns.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                const currentCount = parseInt(counters[index].value);
+                counters[index].value = currentCount + 1;
+                });
+        });
+    </script>
+    <?php
     if(isset($_POST['minus'])){
         $product_id = $_POST['product_id'];
         $product_quantity = $_POST['quantity'];

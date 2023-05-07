@@ -20,27 +20,9 @@
                 <li><a href="">Women</a></li>
             </ul>
             <a href="cart.php" class="cart">
-    <i class='fas fa-shopping-cart'></i> 
-    <span id="cart-total">
-        <?php 
-        if(isset($_SESSION['cart_total'])) {
-            // If cart total is already set in session, use that value
-            echo $_SESSION['cart_total'];
-        } else {
-            // Otherwise, calculate the cart total from the cart items in the database
-            $user_id = $_SESSION['userid'];
-            $sql = "SELECT SUM(product_quantity) AS total FROM cart WHERE users_id=?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $user_id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $row = $result->fetch_assoc();
-            echo $row['total'];
-            $_SESSION['cart_total'] = $row['total'];
-        }
-        ?>
-    </span>
-</a> 
+                <i class='fas fa-shopping-cart'></i> 
+                <span id="cart-total"><?php echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?></span>
+            </a>
             <script>
                 window.addEventListener('DOMContentLoaded', function() {
                     const cartTotal = document.getElementById('cart-total');

@@ -20,21 +20,28 @@
                 <li><a href="">Women</a></li>
             </ul>
         <a href="cart.php" class="cart">
+                <div class="icon">
                 <i class='fas fa-shopping-cart'></i> 
+                </div>
+                
                 <span id="cart-total"><?php echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?></span>
                 <?php
                     if(isset($_SESSION["useruid"])) {
                         //echo "<li><a href = 'profile.php'>Pofile page</a></li>";
-                        echo "<i class='fa fa-user'></i>";
+                       
                         
                         echo "
+                        <div class='icon'>
                         <i class='fa fa-user'></i>
+                        </div>
                         <a href = 'includes/logout.inc.php'> ". $_SESSION['useruid'] ."</a>";
                     }
                     else {
                         //echo "<li><a href = 'register.php'>Register</a></li>";
                         echo "
-                        <i class='fa fa-user' href = 'login.php'></i>";
+                        <div class='icon'>
+                        <i class='fa fa-user' href = 'login.php'></i>
+                        </div>";
                         
                     }
                     ?>

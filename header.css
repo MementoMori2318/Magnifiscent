@@ -5,13 +5,15 @@
     background-color: #000;
     position: relative;
 }
-.fa {
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    background-color: #F77FBE;
+.icon {
+    display: grid;
+    place-items: center;
+    width: 45px;
+    height: 45px;
+    background-color: #4C454C;
     border-radius: 50%;
     color: #FFFFFF;
+    margin-right: 10px;
 }
 ul li{
     text-decoration: none;
@@ -56,9 +58,11 @@ ul li ul li a{
     font-size: 16px;
 }
 .cart {
-    color: #FFFFFF;
-    font-size: 20px;
-    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+   
+    padding: 10px;
+     
 }
 img {
     width: 80px;

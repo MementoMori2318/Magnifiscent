@@ -19,10 +19,26 @@
                 <li><a href="">Men</a></li>
                 <li><a href="">Women</a></li>
             </ul>
-            <a href="cart.php" class="cart">
+        <a href="cart.php" class="cart">
                 <i class='fas fa-shopping-cart'></i> 
                 <span id="cart-total"><?php echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?></span>
-            </a>
+                <?php
+                    if(isset($_SESSION["useruid"])) {
+                        //echo "<li><a href = 'profile.php'>Pofile page</a></li>";
+                        echo "<i class='fa fa-user'></i>";
+                        
+                        echo "
+                        <i class='fa fa-user'></i>
+                        <a href = 'includes/logout.inc.php'> ". $_SESSION['useruid'] ."</a>";
+                    }
+                    else {
+                        //echo "<li><a href = 'register.php'>Register</a></li>";
+                        echo "
+                        <i class='fa fa-user' href = 'login.php'></i>";
+                        
+                    }
+                    ?>
+        </a>
             <script>
                 window.addEventListener('DOMContentLoaded', function() {
                     const cartTotal = document.getElementById('cart-total');
@@ -31,25 +47,10 @@
                     }
                 });
             </script>
-             <span class="user-login">
-                    <?php
-                    if(isset($_SESSION["useruid"])) {
-                        //echo "<li><a href = 'profile.php'>Pofile page</a></li>";
-                        echo "<li><a href = 'includes/logout.inc.php'> ". $_SESSION['useruid'] ."</a></li>";
-                    }
-                    else {
-                        //echo "<li><a href = 'register.php'>Register</a></li>";
-                        echo "<li><a href = 'login.php'>Login</a></li>";
-                        
-                    }
-                    ?>
-                </span>
-                <script>
-                    window.onload = function() {
-                        var scrollPosition = <?php echo isset($_GET['scroll']) ? $_GET['scroll'] : '0'; ?>;
-                        window.scrollTo(0, scrollPosition);
-                    };
-                </script>      
+            
+                    
+               
+             
            
         </div>
     </nav>

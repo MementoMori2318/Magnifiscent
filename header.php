@@ -19,13 +19,16 @@
                 <li><a href="">Men</a></li>
                 <li><a href="">Women</a></li>
             </ul>
-        <a href="cart.php" class="cart">
-                <div class="icon">
+        <div href="cart.php" class="cart">
+            <div class="cart-counter">
+            <div class="icon">
                 <i class='fas fa-shopping-cart'></i> 
                 </div>
                 
                 <span id="cart-total"><?php echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?></span>
-                <div class='dropdown'>
+            </div>
+                
+            <div class='dropdown'>
                     <?php
                         if(isset($_SESSION["useruid"])) {  
                             echo "
@@ -55,7 +58,7 @@
                     </div>
                 </div>
 
-        </a>
+        </div>
             <script>
                 window.addEventListener('DOMContentLoaded', function() {
                     const cartTotal = document.getElementById('cart-total');

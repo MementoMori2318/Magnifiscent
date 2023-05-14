@@ -25,26 +25,36 @@
                 </div>
                 
                 <span id="cart-total"><?php echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?></span>
-                <?php
-                    if(isset($_SESSION["useruid"])) {
-                        //echo "<li><a href = 'profile.php'>Pofile page</a></li>";
-                       
-                        
-                        echo "
-                        <div class='icon'>
-                        <i class='fa fa-user'></i>
-                        </div>
-                        <a href = 'includes/logout.inc.php'> ". $_SESSION['useruid'] ."</a>";
-                    }
-                    else {
-                        //echo "<li><a href = 'register.php'>Register</a></li>";
-                        echo "
-                        <div class='icon'>
-                        <i class='fa fa-user' href = 'login.php'></i>
-                        </div>";
-                        
-                    }
+                <div class='dropdown'>
+                    <?php
+                        if(isset($_SESSION["useruid"])) {  
+                            echo "
+                            <div class='icon'>
+                            <i class='fa fa-user'></i>
+                            </div>
+                            ";
+                        }
+                        else {                    
+                            echo "
+                            <div class='icon'>
+                            <i class='fa fa-user'></i>
+                            </div>";
+                        }
                     ?>
+                    <div class="dropdown-content">
+                        <?php
+                            if(isset($_SESSION["useruid"])) {
+                                echo "<a href = 'includes/logout.inc.php'> ". $_SESSION['useruid'] ."</a>";
+                                echo "<a href = 'includes/logout.inc.php'>Logout</a>";
+                            }
+                            else {
+                                echo "<a href='login.php'>Login</a>";
+                                echo "<a href='register.php'>Register</a>";
+                            }
+                        ?>
+                    </div>
+                </div>
+
         </a>
             <script>
                 window.addEventListener('DOMContentLoaded', function() {
@@ -53,6 +63,16 @@
                         cartTotal.style.display = 'none';
                     }
                 });
+                document.addEventListener("click", function(e) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (e.target !== openDropdown && !openDropdown.contains(e.target)) {
+                    openDropdown.style.display = "none";
+                    }
+                }
+                });
+
             </script>
             
                     

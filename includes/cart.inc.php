@@ -185,30 +185,32 @@ function displayCartItems($conn) {
                 $product_image = $product_row['product_image'];
                 $product_quantity = $row['product_quantity'];
                 
-                echo "<form action='cart.php?action=delete&id=$product_id' method='POST' class='cart-items'>
-                    <div>
-                        <img src='$product_image' alt='image'>
-                    </div>
-                   
-                    <div class='product-info'>
-                        <h5 class='title'>$product_name</h5>
-                        <h5 class='price'>₱$product_price</h5>
-                        <button class='btn' type='submit' name='delete'>Delete</button>
-                    </div>
-
-                </form>
-                <form action='cart.php?action=update_quantity' method='POST'>
-                    <input type='hidden' name='product_id' value='$product_id'>
-                    <button class='minus-btn' type='submit' name='minus'><i class='fas fa-minus'></i></button>
-                    <input type='text' name='quantity' value='$product_quantity' class='counter'>
-                    <button class='plus-btn' type='submit' name='plus'><i class='fas fa-plus'></i></button>
-                </form>";
+                echo "<div class='cart-items'>
+                <div class='img' >
+                    <img src='$product_image' alt='image'>
+                </div>
+                <div class='product-info'>
+                    <h5 class='title'>$product_name</h5>
+                    <h5 class='price'>₱$product_price</h5>       
+                </div>
+                <div class='btn'>
+                    <form action='cart.php?action=delete&id=$product_id' method='POST' >
+                        <button class='fa fa-trash' type='submit' name='delete'></button>
+                    </form>
+                </div>
+                <div class='counter'>
+                    <form action='cart.php?action=update_quantity' method='POST'>
+                        <input type='hidden' name='product_id' value='$product_id'>
+                        <button class='minus-btn' type='submit' name='minus'><i class='fas fa-minus'></i></button>
+                        <input type='text' name='quantity' value='$product_quantity'>
+                        <button class='plus-btn' type='submit' name='plus'><i class='fas fa-plus'></i></button>
+                    </form>
+                </div>
+                    </div>";
             }
         } else {
             echo "<p>Your cart is empty.</p>";
         }
-    } else {
-        echo "<p>You must be logged in to view your cart.</p>";
     }
     ?>
     <script>

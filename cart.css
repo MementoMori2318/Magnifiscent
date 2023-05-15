@@ -18,9 +18,9 @@ body {
 }
 .cart-items {
     border: 1px solid red;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-row-gap: 1em;
+    display: flex;
+    align-items: center;
+   justify-content: space-between;
 }
 .title {
     font-size: 15px;
@@ -43,4 +43,32 @@ body {
 .order-sum, .total {
     display: flex;
     justify-content: space-between;
+}
+.btn button {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 20px;
+}
+.counter {
+    margin: 10px;
+    padding: 0;
+    border: 1px solid #ddd;
+    background-color: #f1e9e9;
+}
+.counter input{
+    width: 20px;
+    margin: 0;
+    padding: 10px;
+    background-color: #f1e9e9;
+    border: none;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    text-align: center;
+}
+.counter button {
+    background-color: #f1e9e9;
+    border: none;
+    padding: 10px;
+    margin: 0;
 }

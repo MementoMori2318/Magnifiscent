@@ -4,7 +4,8 @@ body {
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(-45deg, #FFC796 0%, #FF6B95 100%);
+    /* background: linear-gradient(-45deg, #FFC796 0%, #FF6B95 100%); */
+    background-color: #ddd;
 }
 .container {
     

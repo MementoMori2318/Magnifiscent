@@ -4,16 +4,23 @@
     align-items: center;
     background-color: #000;
     position: relative;
+    border-bottom: 1px solid #252525;
 }
 .icon {
     display: grid;
     place-items: center;
     width: 30px;
     height: 30px;
+    border: 1px solid #252525;
     background-color: #fff;
     border-radius: 50%; 
-    overflow: hidden; 
+    cursor: pointer;
+    transition: .3s ease-in-out;
 }
+.icon:hover {
+  border: 1px solid #FF99CC;
+  background-color: #FF99CC;
+ }
 ul li{
     text-decoration: none;
     list-style: none;
@@ -29,6 +36,7 @@ a {
     color: #FF99CC;
     padding: 3px 10px;
     font-family: 'Libre Baskerville', serif;
+    transition: .3s ease-in-out;
     
 }
 a:hover {
@@ -86,8 +94,8 @@ img {
   }
   .cart-counter #cart-total {
     position: absolute;
-    top: -5px;
-    right: -5px;
+    top: -3px;
+    right: -3px;
     background-color: red;
     color: white;
     font-size: 12px;

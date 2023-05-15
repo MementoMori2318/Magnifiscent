@@ -3,6 +3,7 @@
     session_start();
     require_once('includes/db.php');
     require('includes/cart.inc.php');
+    require('includes/getByBrand.php');
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +22,7 @@
     <div class="container">
         <div class="row">
            <?php
-               getProduct($conn); 
+               getProductByBrand($conn, $brand); 
            ?>
         </div>
     </div>

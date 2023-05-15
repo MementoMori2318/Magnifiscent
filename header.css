@@ -45,7 +45,7 @@ a:hover {
 ul li ul {
     display: none;
     position: absolute;
-    background-color: #103c58;
+    background-color: white;
     border-radius: 4px;
     padding: 0;
     margin: 0;

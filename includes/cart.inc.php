@@ -114,6 +114,9 @@ function getProduct($conn){
         </div>";
     }
 }
+
+
+
 if(isset($_GET['action']) && $_GET['action'] == 'delete') {
     $product_id = $_GET['id'];
     $user_id = $_SESSION['userid'];
@@ -194,15 +197,10 @@ function displayCartItems($conn) {
                 <div class='product-info'>
                     <h5 class='title'>$product_name</h5>
                     <p>by: $product_brand</p>
-                    <h5 class='price'>₱$product_price</h5>       
+                    
                 </div>
                 <div class='delete-btn'>
-                <div class='tooltip'>
-                        <form action='cart.php?action=delete&id=$product_id' method='POST' >
-                            <button class='fa fa-trash' type='submit' name='delete'></button>
-                            <span class='tooltiptext'>remove</span>
-                        </form>
-                    </div>
+                <h5 class='price'>₱$product_price</h5>       
                 </div>  
                 <div class='counter'>
                     <form action='cart.php?action=update_quantity' method='POST'>
@@ -211,6 +209,12 @@ function displayCartItems($conn) {
                         <input type='text' name='quantity' value='$product_quantity' class='count'>
                         <button class='plus-btn' type='submit' name='plus'><i class='fas fa-plus'></i></button>
                     </form>
+                    <div class='tooltip'>
+                    <form action='cart.php?action=delete&id=$product_id' method='POST' >
+                        <button class='fa fa-trash' type='submit' name='delete'></button>
+                        <span class='tooltiptext'>remove</span>
+                    </form>
+                </div>
                 </div>
                     </div>";
             }

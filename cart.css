@@ -25,16 +25,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
-    padding: 0;
 }
 .img img {
-    width: 80%;
-    height: 80%;
+    width: 50%;
+    height: 50%;
 }
 .product-info {
     padding: 10px;
-    margin: 10px;
     font-size: 20px;
     
 }

@@ -18,7 +18,15 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="">Men</a></li>
                 <li><a href="">Women</a></li>
-                <li><a href="">Brands</a></li>
+                <li>
+    <a href="">Brands</a>
+    <ul class='dropdown'>
+        <li><a href='productbybrand.php?brand=Yves%20Saint%20Laurent'>Yves Saint Laurent</a></li>
+        <li><a href='productbybrand.php?brand=Dior'>Dior</a></li>
+        <li><a href='productbybrand.php?brand=Narciso%20Rodriguez'>Narciso Rodrigue</a></li>
+    </ul>
+</li>
+
             </ul>
         <div class="cart">
             <a  href="cart.php"  class="cart-counter">

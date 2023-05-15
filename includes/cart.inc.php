@@ -95,6 +95,7 @@ function getProduct($conn){
                 <div class='card-img'> <img src='" . $row['product_image'] . "' alt='Image1' class='img'></div>
                 <div class='card-info'>
                     <p class='text-title'>" . $row['product_name'] . "</p>
+                    <p>by: ".$row['product_brand']."</p>
                 </div>
                 <div class='card-footer'>
                     <span class='text-title'>₱" . $row['product_price'] . ".00</span>
@@ -184,6 +185,7 @@ function displayCartItems($conn) {
                 $product_price = $product_row['product_price'];
                 $product_image = $product_row['product_image'];
                 $product_quantity = $row['product_quantity'];
+                $product_brand = $product_row['product_brand'];
                 
                 echo "<div class='cart-items'>
                 <div class='img' >
@@ -191,18 +193,22 @@ function displayCartItems($conn) {
                 </div>
                 <div class='product-info'>
                     <h5 class='title'>$product_name</h5>
+                    <p>by: $product_brand</p>
                     <h5 class='price'>₱$product_price</h5>       
                 </div>
-                <div class='btn'>
-                    <form action='cart.php?action=delete&id=$product_id' method='POST' >
-                        <button class='fa fa-trash' type='submit' name='delete'></button>
-                    </form>
-                </div>
+                <div class='delete-btn'>
+                <div class='tooltip'>
+                        <form action='cart.php?action=delete&id=$product_id' method='POST' >
+                            <button class='fa fa-trash' type='submit' name='delete'></button>
+                            <span class='tooltiptext'>remove</span>
+                        </form>
+                    </div>
+                </div>  
                 <div class='counter'>
                     <form action='cart.php?action=update_quantity' method='POST'>
                         <input type='hidden' name='product_id' value='$product_id'>
                         <button class='minus-btn' type='submit' name='minus'><i class='fas fa-minus'></i></button>
-                        <input type='text' name='quantity' value='$product_quantity'>
+                        <input type='text' name='quantity' value='$product_quantity' class='count'>
                         <button class='plus-btn' type='submit' name='plus'><i class='fas fa-plus'></i></button>
                     </form>
                 </div>
@@ -216,7 +222,7 @@ function displayCartItems($conn) {
     <script>
             const minusBtns = document.querySelectorAll('.minus-btn');
             const plusBtns = document.querySelectorAll('.plus-btn');
-            const counters = document.querySelectorAll('.counter');
+            const counters = document.querySelectorAll('.count');
 
             minusBtns.forEach((btn, index) => {
                 btn.addEventListener('click', () => {

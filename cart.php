@@ -5,7 +5,7 @@
     require_once('includes\db.php');
     require('includes\cart.inc.php');
     require_once('includes\functions.inc.php');
-    // Create instance of Createdb class
+   
     if(!isset($_SESSION['userid'])) {
         // User is not logged in, redirect to login page or show error message
         header("Location: login.php");

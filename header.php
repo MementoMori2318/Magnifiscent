@@ -18,6 +18,7 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="">Men</a></li>
                 <li><a href="">Women</a></li>
+                <li><a href="">Brands</a></li>
             </ul>
         <div class="cart">
             <a  href="cart.php"  class="cart-counter">

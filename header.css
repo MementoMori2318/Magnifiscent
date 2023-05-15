@@ -50,8 +50,13 @@ ul li ul {
     padding: 0;
     margin: 0;
 }
-ul li:hover ul {
-    display: block;
+ul li:hover > ul,
+ul li:focus-within > ul,
+ul li ul:hover,
+ul li ul:focus {
+  visibility: visible;
+  opacity: 1;
+  display: block
 }
 ul li ul li {
     width: 100px;

@@ -8,11 +8,11 @@
 .icon {
     display: grid;
     place-items: center;
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     background-color: #fff;
-    border-radius: 50%;  
-    font-size: 40px;
+    border-radius: 50%; 
+    overflow: hidden; 
 }
 ul li{
     text-decoration: none;
@@ -59,7 +59,8 @@ ul li ul li a{
 .cart {
     display: flex;
     align-items: center;
-  
+    justify-content: space-between;
+    
   }
   
 img {
@@ -75,11 +76,13 @@ img {
   
   .cart i {
     position: relative;
-    font-size: 24px;
+    font-size: 20px;
     color: #000;
+    align-self: center;
   }
   .cart-counter {
     position: relative;
+    margin-right: 10px;
   }
   .cart-counter #cart-total {
     position: absolute;

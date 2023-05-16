@@ -1,12 +1,12 @@
 <?php 
 ob_start();
 function addToCart($conn) {
-    if(isset($_POST['add_to_cart'])){
-        if(isset($_SESSION['userid'])){
+    if (isset($_POST['add_to_cart'])) {
+        if (isset($_SESSION['userid'])) {
             $product_id = $_POST['add_to_cart'];
             $user_id = $_SESSION['userid'];
             $date = date('Y-m-d H:i:s');
-       
+
             $sql = "SELECT * FROM cart WHERE product_id=? AND users_id=?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ii", $product_id, $user_id);
@@ -15,48 +15,37 @@ function addToCart($conn) {
 
             $num_rows = $result->num_rows;
 
-            if($num_rows > 0){
-                // Product already exists in cart, update quantity
-                $row = $result->fetch_assoc();
-                $current_quantity = (int) $row['product_quantity'];
-                $current_quantity++;
-                $new_quantity = $current_quantity;
-                $sql = "UPDATE cart SET product_quantity=?, date=? WHERE id=?";
-                $stmt = $conn->prepare($sql);
-                $stmt->bind_param("iss", $new_quantity, $date, $row['id']);
-                $stmt->execute();
-            } else {
+            if ($num_rows == 0) {
                 // Product doesn't exist in cart, insert new row
                 $sql = "INSERT INTO cart (product_id, product_quantity, users_id, date) VALUES (?, 1, ?, ?)";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("iii", $product_id, $user_id, $date);
                 $stmt->execute();
-            }
 
-            // Update cart_total in cart
-            $sql = "SELECT SUM(product_quantity) AS total FROM cart WHERE users_id=?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $user_id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $row = $result->fetch_assoc();
-            $cart_total = $row['total'];
-            $sql = "UPDATE cart SET cart_total=? WHERE users_id=?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ii", $cart_total, $user_id);
-            $stmt->execute();
+                // Update cart_total in cart
+                $sql = "SELECT SUM(product_quantity) AS total FROM cart WHERE users_id=?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("i", $user_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                $cart_total = $row['total'];
+                $sql = "UPDATE cart SET cart_total=? WHERE users_id=?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("ii", $cart_total, $user_id);
+                $stmt->execute();
 
-            // Update cart_total in customer table
-            $sql = "UPDATE customer SET cart_total=? WHERE usersid=?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ii", $cart_total, $user_id);
-            $stmt->execute();
-            
-            // Update $_SESSION['cart_total']
-            $_SESSION['cart_total'] = $cart_total;
+                // Update cart_total in customer table
+                $sql = "UPDATE customer SET cart_total=? WHERE usersid=?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("ii", $cart_total, $user_id);
+                $stmt->execute();
 
-            // Update cart total using AJAX
-            echo "<script>
+                // Update $_SESSION['cart_total']
+                $_SESSION['cart_total'] = $cart_total;
+
+                // Update cart total using AJAX
+                echo "<script>
                 function updateCartTotal() {
                     var xhttp = new XMLHttpRequest();
                     xhttp.onreadystatechange = function() {
@@ -74,13 +63,14 @@ function addToCart($conn) {
                 // Call updateCartTotal() every 5 seconds (5000 milliseconds)
                 setInterval(updateCartTotal, 1000);";
                 echo "</script>";
-        }
-        else {
+            }
+        } else {
             header("Location: login.php");
             exit();
         }
     }
 }
+
 
 
 
@@ -203,7 +193,7 @@ function displayCartItems($conn) {
                 <h5 class='price'>₱$product_price</h5>       
                 </div>  
                 <div class='counter'>
-                    <form action='cart.php?action=update_quantity' method='POST'>
+                    <form action='cart.php?action=".update_quantity($conn)."' method='POST'>
                         <input type='hidden' name='product_id' value='$product_id'>
                         <button class='minus-btn' type='submit' name='minus'><i class='fas fa-minus'></i></button>
                         <input type='text' name='quantity' value='$product_quantity' class='count'>
@@ -222,62 +212,49 @@ function displayCartItems($conn) {
             echo "<p>Your cart is empty.</p>";
         }
     }
-    ?>
-    <script>
-            const minusBtns = document.querySelectorAll('.minus-btn');
-            const plusBtns = document.querySelectorAll('.plus-btn');
-            const counters = document.querySelectorAll('.count');
-
-            minusBtns.forEach((btn, index) => {
-                btn.addEventListener('click', () => {
-                const currentCount = parseInt(counters[index].value);
-                if (currentCount > 1) {
-                    counters[index].value = currentCount - 1;
-                }
-                });
-            });
-
-            plusBtns.forEach((btn, index) => {
-                btn.addEventListener('click', () => {
-                const currentCount = parseInt(counters[index].value);
-                counters[index].value = currentCount + 1;
-                });
-        });
-    </script>
-    <?php
-    if(isset($_POST['minus'])){
-        $product_id = $_POST['product_id'];
-        $product_quantity = $_POST['quantity'];
-        
-        if($product_quantity > 1){
-            $new_quantity = $product_quantity - 1;
+    
+    
+    
+   
+}
+function update_quantity($conn) {
+    if(isset($_SESSION['userid'])){
+        $user_id = $_SESSION['userid'];
+        if(isset($_POST['minus'])){
+            $product_id = $_POST['product_id'];
+            $product_quantity = $_POST['quantity'];
+            
+            if($product_quantity > 1){
+                $new_quantity = $product_quantity - 1;
+                $sql = "UPDATE cart SET product_quantity=? WHERE product_id=? AND users_id=?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("iii", $new_quantity, $product_id, $user_id);
+                $stmt->execute();
+            } else {
+                $sql = "DELETE FROM cart WHERE product_id=? AND users_id=?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("ii", $product_id, $user_id);
+                $stmt->execute();
+            }
+            
+            
+        }
+    
+        if(isset($_POST['plus'])){
+            $product_id = $_POST['product_id'];
+            $product_quantity = $_POST['quantity'];
+            
+            $new_quantity = $product_quantity + 1;
             $sql = "UPDATE cart SET product_quantity=? WHERE product_id=? AND users_id=?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("iii", $new_quantity, $product_id, $user_id);
             $stmt->execute();
-        } else {
-            $sql = "DELETE FROM cart WHERE product_id=? AND users_id=?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ii", $product_id, $user_id);
-            $stmt->execute();
+            
         }
-        
-        
     }
-
-    if(isset($_POST['plus'])){
-        $product_id = $_POST['product_id'];
-        $product_quantity = $_POST['quantity'];
-        
-        $new_quantity = $product_quantity + 1;
-        $sql = "UPDATE cart SET product_quantity=? WHERE product_id=? AND users_id=?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("iii", $new_quantity, $product_id, $user_id);
-        $stmt->execute();
-        
-    }
+       
+    
 }
-
 
 
 function displayOrderSummary($conn) {

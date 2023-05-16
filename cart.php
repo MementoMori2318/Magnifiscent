@@ -33,6 +33,27 @@
     
                 displayCartItems($conn);
             ?>
+             <script>
+            const minusBtns = document.querySelectorAll('.minus-btn');
+            const plusBtns = document.querySelectorAll('.plus-btn');
+            const counters = document.querySelectorAll('.count');
+
+            minusBtns.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                const currentCount = parseInt(counters[index].value);
+                if (currentCount > 1) {
+                    counters[index].value = currentCount - 1;
+                }
+                });
+            });
+
+            plusBtns.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                const currentCount = parseInt(counters[index].value);
+                counters[index].value = currentCount + 1;
+                });
+        });
+    </script>
         </div>
         <div class="total-item-container">
             <?php

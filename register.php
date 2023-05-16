@@ -2,6 +2,7 @@
     include_once 'header.php';
 ?>
 <link rel="stylesheet" href="register_login.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <div class="register-form-container">
     <section class="register-form">    
             <h2>Register</h2>
@@ -38,7 +39,16 @@
             <?php
             if (isset($_GET["error"])) {
                 if ($_GET["error"] == "emptyinput") {
-                echo"<p>Fill in all fields!</p>";
+                ?>
+                    <script>
+                        swal({
+                        title: "!",
+                        text: "Fill in all fields!!",
+                        icon: "warning",
+                        button: "Sheesh!",
+                        });
+                    </script>
+                    <?php
                 }
                 else if ($_GET["error"] == "invaliduid") {
                     echo "<p>Choose a proper username!</p>";
@@ -47,7 +57,15 @@
                     echo "<p>Choose a proper email!</p>";
                 }
                 else if ($_GET["error"] == "passworddontmatch") {
-                    echo "<p>Password doesn't match!</p>";
+                    ?>
+                    <script>
+                        swal({
+                        title: "Password doesn't match!!",
+                        icon: "warning",
+                        button: "Sheesh!",
+                        });
+                    </script>
+                    <?php
                 }
                 else if ($_GET["error"] == "stmtfailed") {
                     echo "<p>Something went wrong, try again</p>";
@@ -56,7 +74,16 @@
                     echo "<p>Username already Taken</p>";
                 }
                 else if ($_GET["error"] == "none") {
-                    echo "<p>You have signed up!</p>";
+                    ?>
+                    <script>
+                        swal({
+                        title: "Greate!",
+                        text: "Successfully Created an account!",
+                        icon: "success",
+                        button: "Aww yiss!",
+                        });
+                    </script>
+                    <?php
                 }
             }
 

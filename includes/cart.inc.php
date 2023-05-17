@@ -44,25 +44,7 @@ function addToCart($conn) {
                 // Update $_SESSION['cart_total']
                 $_SESSION['cart_total'] = $cart_total;
 
-                // Update cart total using AJAX
-                // echo "<script>
-                // function updateCartTotal() {
-                //     var xhttp = new XMLHttpRequest();
-                //     xhttp.onreadystatechange = function() {
-                //         if (this.readyState == 4 && this.status == 200) {
-                //             document.getElementById('cart-total').innerHTML = this.responseText;
-                //         }
-                //     };
-                //     xhttp.open('GET', 'get_cart_total.php', true);
-                //     xhttp.send();
-                // }
-
-                // // Call updateCartTotal() on page load
-                // updateCartTotal();
-
-                // // Call updateCartTotal() every 5 seconds (5000 milliseconds)
-                // setInterval(updateCartTotal, 1000);";
-                // echo "</script>";
+                
                 ?>
                 <script>
                     swal({

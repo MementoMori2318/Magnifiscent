@@ -30,8 +30,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 250px;
-    height: 350px;
+    width: 280px;
+    height: 420px;
     padding: .8em;
     background: #0f0f0f;
     position: relative;
@@ -44,7 +44,7 @@ body {
 .card-img {
     background: #F93B96;
     background: radial-gradient(at center, #F93B96, #F5B5DB);
-    height: 40%;
+    height: 50%;
     width: 100%;
     border-radius: .5rem;
     transition: .3s ease;

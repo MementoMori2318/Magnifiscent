@@ -79,7 +79,7 @@ function getProduct($conn)
                 <div class='card-img'> <img src='" . $row['product_image'] . "' alt='Image1' class='img'></div>
                 <div class='card-info'>
                     <p class='text-title'>" . $row['product_name'] . "</p>
-                    <p>by: " . $row['product_brand'] . "</p>
+                    <p>by: ".$row['product_brand']."</p>
                 </div>
                 <div class='card-footer'>
                     <span class='text-title'>₱" . $row['product_price'] . ".00</span>

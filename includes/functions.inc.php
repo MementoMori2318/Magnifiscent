@@ -10,6 +10,7 @@ function emptyInputRegister($name, $email, $address , $username, $pwd, $pwdrepea
     }
     return  $result;
 }
+
 function invalidUid($username){
     $result;
     if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
@@ -20,6 +21,7 @@ function invalidUid($username){
     }
     return  $result;
 }
+
 function invalidEmail($email){
     $result;
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -30,6 +32,7 @@ function invalidEmail($email){
     }
     return  $result;
 }
+
 function pwdMatch($pwd, $pwdrepeat){
     $result;
     if ($pwd !== $pwdrepeat) {
@@ -40,6 +43,7 @@ function pwdMatch($pwd, $pwdrepeat){
     }
     return  $result;
 }
+
 function uidExists($conn, $username, $email){
     $sql = "SELECT * FROM customer WHERE usersUid = ? OR usersEmail = ?;";
     $stmt = mysqli_stmt_init($conn);

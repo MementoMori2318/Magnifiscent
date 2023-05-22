@@ -4,7 +4,6 @@ font-family: 'Kaushan Script', cursive; */
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh;
     padding: 0px;
     margin: 0px;
     font-family: 'Roboto', sans-serif;

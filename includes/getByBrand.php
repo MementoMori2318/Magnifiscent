@@ -12,7 +12,7 @@ function getProductByBrand($conn, $brand) {
         echo "
         <div class='products'>
             <form method='POST'>
-                <div class='card'>
+            <a href='product_details.php?product_id=" . $row['id'] . "' class='card'>
                     <div class='card-img'>
                         <img src='" . $row['product_image'] . "' alt='Image1' class='img'>
                     </div>
@@ -32,7 +32,7 @@ function getProductByBrand($conn, $brand) {
                             <input type='hidden' name='product_id' value='" . $row['id'] . "'/>
                         </form>
                     </div>
-                </div>
+                </a>
             </form>
         </div>";
     }

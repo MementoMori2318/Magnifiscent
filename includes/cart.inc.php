@@ -75,7 +75,8 @@ function getProduct($conn)
     while ($row = $result->fetch_assoc()) {
         echo  " <div class='products'>
             <form method='POST'>
-                <div class='card'>
+               
+                <a href='product_details.php?product_id=" . $row['id'] . "' class='card'>
                 <div class='card-img'> <img src='" . $row['product_image'] . "' alt='Image1' class='img'></div>
                 <div class='card-info'>
                     <p class='text-title'>" . $row['product_name'] . "</p>
@@ -93,7 +94,9 @@ function getProduct($conn)
                     </button>
                     <input type='hidden' name='product_id' value='" . $row['id'] . "'/>
                 </form>
-                </div></div>
+                </div>
+                </a>
+               
             </form>
         </div>";
     }
@@ -188,19 +191,19 @@ function displayCartItems($conn)
                 <h5 class='price'>₱$product_price</h5>       
                 </div>  
                 <div class='counter'>
-                    <form action='cart.php?action=" . update_quantity($conn) . "' method='POST'>
+                    <form action='cart.php?action='" . update_quantity($conn) . "' method='POST'>
                         <input type='hidden' name='product_id' value='$product_id'>
 
-                        // URL IDs need to be updated
+                      
                         <button class='minus-btn' type='submit' name='minus'><i class='fas fa-minus'>
-                        <a href=\"..\process\decrement.php?decrementID=$id\"></a>
+                        <a href=\"..\process\decrement.php?decrementID=$product_id\"></a>
                         </i></button>
 
                         <input type='text' name='quantity' value='$product_quantity' class='count'>
                         
-                        // URL IDs need to be updated
+                        
                         <button class='plus-btn' type='submit' name='plus'><i class='fas fa-plus'>
-                        <a href=\"..\process\increment.php?incrementID=$id\">
+                        <a href=\"..\process\increment.php?incrementID=$product_id\">
                         </i></button>
 
                     </form>
@@ -228,7 +231,7 @@ function update_quantity($conn)
         // decrement
         if (isset($_POST['minus'])) {
             $product_id = $_POST['product_id'];
-            $product_quantity = $_POST['quantity'];
+            $product_quantity = $_POST['product_quantity'];
 
             if ($product_quantity > 1) {
                 $new_quantity = $product_quantity - 1;

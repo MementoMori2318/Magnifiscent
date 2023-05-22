@@ -49,6 +49,9 @@ $row = $result->fetch_assoc();
                     <p>Brand: " . $row['product_brand'] . "</p>
                 </div>
                 <p>Price: ₱" . $row['product_price'] . ".00</p>
+                <div>
+                    <button>Add to cart</button>
+                </div>
               </div>
           </div>";
            ?>

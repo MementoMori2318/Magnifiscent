@@ -24,7 +24,7 @@ body {
    height: 400px;
    display: grid;
    grid-template-columns: repeat(2, 1fr);
-  
+   background-color:white;
    
 }
 .img{
@@ -63,12 +63,13 @@ body {
     position: relative;
     transition: all 1s;
     overflow: hidden;
-  }
-  
-  .btn:hover {
+    z-index: 1; 
+}
+
+.btn:hover {
     color: white;
-  }
-  
+}
+
 .btn::before {
     content: '';
     position: absolute;
@@ -80,8 +81,10 @@ body {
     background-color: #F77FBE;
     z-index: -1;
     transition: all 1s;
-  }
-  
-  .btn:hover::before {
+}
+
+.btn:hover::before {
     width: 160%;
-  }
+    z-index: -1; 
+}
+

@@ -201,14 +201,14 @@ function displayCartItems($conn)
 
                       
                         <button class='minus-btn' type='submit' name='minus'><i class='fas fa-minus'>
-                        <a href=\"..\process\decrement.php?decrementID=$product_id\"></a>
+                      
                         </i></button>
 
                         <input type='text' name='quantity' value='$product_quantity' class='count'>
                         
                         
                         <button class='plus-btn' type='submit' name='plus'><i class='fas fa-plus'>
-                        <a href=\"..\process\increment.php?incrementID=$product_id\">
+                       
                         </i></button>
 
                     </form>
@@ -239,7 +239,7 @@ function update_quantity($conn)
             $product_quantity = $_POST['quantity'];
 
             if ($product_quantity > 1) {
-                $new_quantity = $product_quantity - 1;
+                $new_quantity = $product_quantity --;
                 $sql = "UPDATE cart SET product_quantity=? WHERE product_id=? AND users_id=?";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("iii", $new_quantity, $product_id, $user_id);
@@ -252,7 +252,7 @@ function update_quantity($conn)
             $product_id = $_POST['product_id'];
             $product_quantity = $_POST['quantity'];
 
-            $new_quantity = $product_quantity + 1;
+            $new_quantity = $product_quantity ++;
             $sql = "UPDATE cart SET product_quantity=? WHERE product_id=? AND users_id=?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("iii", $new_quantity, $product_id, $user_id);
@@ -303,6 +303,29 @@ function displayOrderSummary($conn)
                     <p>Your cart is empty.</p>
                 </div>";
         }
+        ?>
+        <script>
+                const minusBtns = document.querySelectorAll('.minus-btn');
+                const plusBtns = document.querySelectorAll('.plus-btn');
+                const counters = document.querySelectorAll('.count');
+
+                minusBtns.forEach((btn, index) => {
+                    btn.addEventListener('click', () => {
+                        const currentCount = parseInt(counters[index].value);
+                        if (currentCount > 1) {
+                            counters[index].value = currentCount - 1;
+                        }
+                    });
+                });
+
+                plusBtns.forEach((btn, index) => {
+                    btn.addEventListener('click', () => {
+                        const currentCount = parseInt(counters[index].value);
+                        counters[index].value = currentCount + 1;
+                    });
+                });
+            </script>
+            <?php
     }
 }
 

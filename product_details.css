@@ -1,19 +1,24 @@
 body {
-    
+    display: flex;
+    flex-direction: column;
     padding: 0px;
     margin: 0px;
     font-family: 'Roboto', sans-serif;
+    
 }
-.container {  
+.container {    
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 90vh;
+    
+    font-family: 'Libre Baskerville', serif;
 }
 .product-container {
     border: 2px solid #212121;;
     padding: 20px;
+    margin: 20px;
     border-radius: .5em;
    width: 1000px;
    height: 400px;
@@ -36,11 +41,14 @@ body {
 }
 .brand {
     font-size: 23px;
-    margin-top: -25px;
+    margin-top: -30px;
 }
 .name .price {
     font-size: 25px;
     font-weight: 600;
+}
+.name .details{
+    font-size: 20px;
 }
 .btn {
     color: #F77FBE;
@@ -60,7 +68,7 @@ body {
     color: white;
   }
   
-  .btn::before {
+.btn::before {
     content: '';
     position: absolute;
     height: 100%;

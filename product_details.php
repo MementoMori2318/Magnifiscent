@@ -40,7 +40,7 @@ $row = $result->fetch_assoc();
                 <div class='name'>
                     <h2 class='title'>" . $row['product_name'] . "</h2>
                     <p class='brand'>by: " . $row['product_brand'] . "</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam assumenda 
+                    <p class='details'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam assumenda 
                     veritatis facere nostrum delectus aliquam hic nulla. Unde explicabo officia 
                     repudiandae perferendis voluptas, nesciunt necessitatibus provident tempore 
                     veniam vel ipsam!</p>

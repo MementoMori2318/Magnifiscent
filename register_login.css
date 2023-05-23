@@ -157,7 +157,7 @@ button:hover {
     padding-bottom: 6px;
     font-weight: 700;
     border-width: 3px;
-    border-image: linear-gradient(to right, #116399, #38caef);
+    border-image: linear-gradient(-45deg, #FFC796 0%, #FF6B95 100%);
     border-image-slice: 1;
   }
   
@@ -167,7 +167,7 @@ button:hover {
     display: block;
     transition: 0.2s;
     font-size: 17px;
-    color: #38caef;
+    color: #FF6B95;
     font-weight: 700;
   }
   

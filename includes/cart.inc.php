@@ -208,7 +208,7 @@ function displayCartItems($conn)
                     </form>
                     <div class='tooltip'>
                     <form action='cart.php?action=delete&id=$product_id' method='POST' >
-                        <button class='fa fa-trash' type='submit' name='delete'></button>
+                        <button class='delete-btn fa fa-trash ' type='submit' name='delete'></button>
                         <span class='tooltiptext'>remove</span>
                     </form>
                 </div>
@@ -221,7 +221,7 @@ function displayCartItems($conn)
     }
      ?>
         <script>
-             const minusBtns = document.querySelectorAll('.minus-btn');
+            const minusBtns = document.querySelectorAll('.minus-btn');
 const plusBtns = document.querySelectorAll('.plus-btn');
 const counters = document.querySelectorAll('.count');
 
@@ -253,8 +253,8 @@ function updateQuantity(counter) {
   // Save the new quantity to localStorage
   localStorage.setItem(`quantity_${product_id}`, new_quantity);
 
-  // Reload the page
-  window.location.reload();
+  // Submit the form to update the quantity
+  form.submit();
 }
 
 // Restore the saved quantities on page load
@@ -268,7 +268,15 @@ window.addEventListener('load', () => {
   });
 });
 
-
+// Reset quantity to 1 when an item is deleted
+const deleteButtons = document.querySelectorAll('.delete-btn');
+deleteButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const counter = btn.closest('.counter').querySelector('.count');
+    const product_id = counter.dataset.productId;
+    localStorage.removeItem(`quantity_${product_id}`);
+  });
+});
             </script>
             <?php
 }

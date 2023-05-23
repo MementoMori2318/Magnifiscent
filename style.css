@@ -7,14 +7,16 @@ body {
     padding: 0px;
     margin: 0px;
     font-family: 'Roboto', sans-serif;
+   
     
 }
 /* Hero style start*/
 .hero-container {
     background-size: cover;
-    flex: 1;
+    
     color: #000;
     display: flex;
+    height: 90vh;
     
 }
 .hero-title {

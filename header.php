@@ -37,9 +37,11 @@
                         </svg>
                 </div>
                 
-                <span id="cart-total"><?php echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?></span>
+                <span id="cart-total">
+    <?php echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?>
+</span>
+
             </a>
-                
             <div class='dropdown'>
                     <?php
                         if(isset($_SESSION["useruid"])) {  

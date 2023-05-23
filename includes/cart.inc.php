@@ -221,7 +221,7 @@ function displayCartItems($conn)
     }
      ?>
         <script>
-          const minusBtns = document.querySelectorAll('.minus-btn');
+         const minusBtns = document.querySelectorAll('.minus-btn');
 const plusBtns = document.querySelectorAll('.plus-btn');
 const counters = document.querySelectorAll('.count');
 
@@ -247,10 +247,10 @@ function updateQuantity(counter) {
   const product_id = counter.dataset.productId;
   const new_quantity = counter.value;
 
-  const form = counter.closest('.counter').querySelector('form');
+  const form = counter.closest('form');
   form.action = `cart.php?action=update&id=${product_id}`;
 
-  // Save the new quantity to localStorage using a separate key
+  // Save the new quantity to localStorage
   localStorage.setItem(`quantity_${product_id}`, new_quantity);
 
   // Submit the form to update the quantity
@@ -277,6 +277,7 @@ deleteButtons.forEach(btn => {
     localStorage.removeItem(`quantity_${product_id}`);
   });
 });
+
 
 
 

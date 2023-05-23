@@ -11,6 +11,25 @@
     <title>Magnifiscent</title>
 </head>
 <body>
+<script>
+               window.addEventListener('DOMContentLoaded', function() {
+    const cartTotal = document.getElementById('cart-total');
+    if (cartTotal && parseInt(cartTotal.textContent) === 0) {
+        cartTotal.style.display = 'none';
+    } 
+});
+
+                document.addEventListener("click", function(e) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (e.target !== openDropdown && !openDropdown.contains(e.target)) {
+                    openDropdown.style.display = "none";
+                    }
+                }
+                });
+
+            </script>
 <nav>
         <div class="wrapper">
         <a href="index.php"><img src="image/logo.png" alt="Logo"></a>
@@ -38,7 +57,29 @@
                 </div>
                 
                 <span id="cart-total">
-    <?php echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?>
+    <?php 
+   
+    // if(isset($_SESSION["useruid"])){
+    //     $userId = $_SESSION['userid'];
+    //     $query = "SELECT COUNT(*) as count FROM cart WHERE users_id = $userId";
+    //     $result = mysqli_query($conn, $query);
+    //     if ($result) {
+    //         // Fetch the result
+    //         $row = mysqli_fetch_assoc($result);
+
+    //         // Access the count value
+    //         $count = $row['count'];
+
+    //         // Output the count
+    //         if($count > 0){
+    //             echo $count;
+    //         }else {
+    //             echo "0";
+    //         }
+            
+    //     } 
+    // }
+    echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?>
 </span>
 
             </a>
@@ -73,24 +114,7 @@
                 </div>
 
         </div>
-            <script>
-                window.addEventListener('DOMContentLoaded', function() {
-                    const cartTotal = document.getElementById('cart-total');
-                    if (cartTotal && parseInt(cartTotal.textContent) === 0) {
-                        cartTotal.style.display = 'none';
-                    }
-                });
-                document.addEventListener("click", function(e) {
-                const dropdowns = document.getElementsByClassName("dropdown-content");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    const openDropdown = dropdowns[i];
-                    if (e.target !== openDropdown && !openDropdown.contains(e.target)) {
-                    openDropdown.style.display = "none";
-                    }
-                }
-                });
 
-            </script>
             
                     
                

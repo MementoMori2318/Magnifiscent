@@ -3,6 +3,8 @@
     session_start();
     require_once('includes/db.php');
     require('includes/cart.inc.php');
+
+   
 ?>
 
 <!DOCTYPE html>
@@ -29,5 +31,7 @@
     </div>
     <!--END Product -->
    
+   
+
 </body>
 </html>

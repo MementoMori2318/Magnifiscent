@@ -4,10 +4,10 @@ body {
     padding: 0px;
     margin: 0px;
     font-family: 'Roboto', sans-serif;
-    
+    background: linear-gradient(-45deg, #FFC796 0%, #FF6B95 100%);
 }
 .container {    
-    flex: 1;
+    flex: 2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,6 +24,7 @@ body {
    height: 400px;
    display: grid;
    grid-template-columns: repeat(2, 1fr);
+  
    
 }
 .img{

@@ -59,27 +59,25 @@
                 <span id="cart-total">
     <?php 
    
-    // if(isset($_SESSION["useruid"])){
-    //     $userId = $_SESSION['userid'];
-    //     $query = "SELECT COUNT(*) as count FROM cart WHERE users_id = $userId";
-    //     $result = mysqli_query($conn, $query);
-    //     if ($result) {
-    //         // Fetch the result
-    //         $row = mysqli_fetch_assoc($result);
+    if(isset($_SESSION["useruid"])){
+        $userId = $_SESSION['userid'];
+        $query = "SELECT COUNT(*) as count FROM cart WHERE users_id = $userId";
+        $result = mysqli_query($conn, $query);
+        if ($result) {
+            // Fetch the result
+            $row = mysqli_fetch_assoc($result);
 
-    //         // Access the count value
-    //         $count = $row['count'];
+            // Access the count value
+            $count = $row['count'];
 
-    //         // Output the count
-    //         if($count > 0){
-    //             echo $count;
-    //         }else {
-    //             echo "0";
-    //         }
+            // Output the count
             
-    //     } 
-    // }
-    echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?>
+                echo $count;
+           
+            
+        } 
+    }
+    // echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?>
 </span>
 
             </a>

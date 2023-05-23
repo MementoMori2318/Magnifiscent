@@ -198,19 +198,13 @@ function displayCartItems($conn)
                 <div class='counter'>
                     <form action='cart.php?action='" . update_quantity($conn) . "' method='POST'>
                         <input type='hidden' name='product_id' value='$product_id'>
-
-                      
-                        <button class='minus-btn' type='submit' name='minus'><i class='fas fa-minus'>
-                      
-                        </i></button>
-
+                        <button class='minus-btn' type='submit' name='minus'>
+                            <i class='fas fa-minus'></i>
+                        </button>
                         <input type='text' name='quantity' value='$product_quantity' class='count'>
-                        
-                        
-                        <button class='plus-btn' type='submit' name='plus'><i class='fas fa-plus'>
-                       
-                        </i></button>
-
+                        <button class='plus-btn' type='submit' name='plus'>
+                        <i class='fas fa-plus'></i>
+                        </button>
                     </form>
                     <div class='tooltip'>
                     <form action='cart.php?action=delete&id=$product_id' method='POST' >
@@ -225,6 +219,58 @@ function displayCartItems($conn)
             echo "<p>Your cart is empty.</p>";
         }
     }
+     ?>
+        <script>
+             const minusBtns = document.querySelectorAll('.minus-btn');
+const plusBtns = document.querySelectorAll('.plus-btn');
+const counters = document.querySelectorAll('.count');
+
+minusBtns.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    const currentCount = parseInt(counters[index].value);
+    if (currentCount > 1) {
+      counters[index].value = currentCount - 1;
+      updateQuantity(counters[index]);
+    }
+  });
+});
+
+plusBtns.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    const currentCount = parseInt(counters[index].value);
+    counters[index].value = currentCount + 1;
+    updateQuantity(counters[index]);
+  });
+});
+
+function updateQuantity(counter) {
+  const product_id = counter.dataset.productId;
+  const new_quantity = counter.value;
+
+  const form = counter.closest('form');
+  form.action = `cart.php?action=update&id=${product_id}`;
+
+  // Save the new quantity to localStorage
+  localStorage.setItem(`quantity_${product_id}`, new_quantity);
+
+  // Reload the page
+  window.location.reload();
+}
+
+// Restore the saved quantities on page load
+window.addEventListener('load', () => {
+  counters.forEach(counter => {
+    const product_id = counter.dataset.productId;
+    const saved_quantity = localStorage.getItem(`quantity_${product_id}`);
+    if (saved_quantity) {
+      counter.value = saved_quantity;
+    }
+  });
+});
+
+
+            </script>
+            <?php
 }
 
 // increment and decrement function
@@ -258,6 +304,7 @@ function update_quantity($conn)
             $stmt->bind_param("iii", $new_quantity, $product_id, $user_id);
             $stmt->execute();
         }
+       
     }
 }
 
@@ -303,29 +350,7 @@ function displayOrderSummary($conn)
                     <p>Your cart is empty.</p>
                 </div>";
         }
-        ?>
-        <script>
-                const minusBtns = document.querySelectorAll('.minus-btn');
-                const plusBtns = document.querySelectorAll('.plus-btn');
-                const counters = document.querySelectorAll('.count');
-
-                minusBtns.forEach((btn, index) => {
-                    btn.addEventListener('click', () => {
-                        const currentCount = parseInt(counters[index].value);
-                        if (currentCount > 1) {
-                            counters[index].value = currentCount - 1;
-                        }
-                    });
-                });
-
-                plusBtns.forEach((btn, index) => {
-                    btn.addEventListener('click', () => {
-                        const currentCount = parseInt(counters[index].value);
-                        counters[index].value = currentCount + 1;
-                    });
-                });
-            </script>
-            <?php
+     
     }
 }
 

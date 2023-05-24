@@ -390,7 +390,10 @@ echo "<div class='product-container'>
 </div>
 <div class='name'>
     <h2 class='title'>" . $row['product_name'] . "</h2>
-    <p class='brand'>by: " . $row['product_brand'] . "</p>
+    <div class='bg'>
+        <p class='subtitle'>by: " . $row['product_brand'] . "</p>
+        <p class='subtitle'>for: ".$row['product_gender']."</p>
+    </div>
     <p class='details'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam assumenda 
     veritatis facere nostrum delectus aliquam hic nulla. Unde explicabo officia 
     repudiandae perferendis voluptas, nesciunt necessitatibus provident tempore 

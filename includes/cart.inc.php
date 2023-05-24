@@ -374,13 +374,6 @@ function displayOrderSummary($conn)
                         <button class='btn'>Proceed to cheackout</button>
                     </div>
                 </div>";
-        } else {
-            // Display message when cart is empty
-            $_SESSION['cart_total'] = 0;
-            echo "<div class='order-summary'>
-                    <h2>Order Summary</h2>
-                    <p>Your cart is empty.</p>
-                </div>";
         }
     }
 }

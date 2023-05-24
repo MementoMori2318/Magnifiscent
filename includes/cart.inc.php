@@ -394,10 +394,10 @@ echo "<div class='product-container'>
         <p class='subtitle'>by: " . $row['product_brand'] . "</p>
         <p class='subtitle'>for: ".$row['product_gender']."</p>
     </div>
-    <p class='details'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam assumenda 
-    veritatis facere nostrum delectus aliquam hic nulla. Unde explicabo officia 
-    repudiandae perferendis voluptas, nesciunt necessitatibus provident tempore 
-    veniam vel ipsam!</p>
+    <p class='details'>Enchant your senses with this captivating perfume that embodies elegance, 
+    sensuality, and sophistication. The intoxicating blend of floral and woody notes creates a 
+    mesmerizing fragrance that leaves a lasting impression. With its delicate yet alluring aroma, 
+    this perfume captures the essence of timeless beauty and evokes a sense of confidence and allure.</p>
     <p class='price'>Price: ₱" . $row['product_price'] . ".00</p>
     <form action='" . addToCart($conn) . "' method='POST'>
 <button class='btn' type='submit' name='add_to_cart' value='" . $row['id'] . "'>

@@ -62,6 +62,9 @@ body {
     font-size: 25px;
     font-weight: 600;
 }
+.price {
+    margin-top: -10px;
+}
 .name .details{
     font-size: 20px;
 }

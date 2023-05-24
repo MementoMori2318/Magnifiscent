@@ -148,4 +148,9 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
--- INSERT INTO `products` (`product_name`, `product_price`, `product_image`, `product_stock`, `product_brand`, `product_gender`) VALUES ('Posion Dior', 999, 'image/8.png', 20, 'Dior', 'Men'), ('Gucci Flora', 5199, 'image/11.png', 20, 'Narciso Rodriguez', 'Women'), ('Posion Girl', 6199, 'image/12.png', 20, 'Dior', 'Women'), ('Cyrstal', 689, 'image/13.png', 20, 'Yves Saint Laurent', 'Men'), ('Yellow Diamong', 1032, 'image/15.png', 20, 'Yves Saint Laurent', 'Men');
+-- INSERT INTO `products` (`product_name`, `product_price`, `product_image`, `product_stock`, `product_brand`, `product_gender`) VALUES
+-- ('Posion Dior', 999, 'image/8.png', 20, 'Dior', 'Men'),
+-- ('Gucci Flora', 5199, 'image/11.png', 20, 'Narciso Rodriguez', 'Women'), 
+-- ('Posion Girl', 6199, 'image/12.png', 20, 'Dior', 'Women'),
+--  ('Cyrstal', 689, 'image/13.png', 20, 'Yves Saint Laurent', 'Men'), 
+--  ('Yellow Diamong', 1032, 'image/15.png', 20, 'Yves Saint Laurent', 'Men');

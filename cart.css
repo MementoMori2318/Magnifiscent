@@ -127,3 +127,39 @@ body {
    .tooltip:hover .tooltiptext {
     visibility: visible;
    }
+   .btn {
+    color: #F77FBE;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid #F77FBE;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    background: transparent;
+    position: relative;
+    transition: all 1s;
+    overflow: hidden;
+    z-index: 1; 
+}
+
+.btn:hover {
+    color: white;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    top: 0;
+    left: -40px;
+    transform: skewX(45deg);
+    background-color: #F77FBE;
+    z-index: -1;
+    transition: all 1s;
+}
+
+.btn:hover::before {
+    width: 160%;
+    z-index: -1; 
+}

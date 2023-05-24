@@ -363,6 +363,7 @@ function displayOrderSummary($conn)
                     <h2>Order Summary</h2>
                     <p>Total Products: $cart_total</p>
                     <p>Total Price: ₱$total_price</p>
+                <button class='btn'>Proceed to cheackout</button>
                 </div>";
         } else {
             // Display message when cart is empty

@@ -360,10 +360,19 @@ function displayOrderSummary($conn)
             $_SESSION['cart_total'] = $cart_total;
 
             echo "<div class='order-summary'>
-                    <h2>Order Summary</h2>
-                    <p>Total Products: $cart_total</p>
-                    <p>Total Price: ₱$total_price</p>
-                <button class='btn'>Proceed to cheackout</button>
+                    
+              
+                    <div class='order-sum'>
+                        <p>Total Products:</p>
+                        <p>$cart_total</p>
+                        </div>
+                        <div class='order-sum'>
+                            <p>Total Price:</p>
+                            <p>₱$total_price</p>
+                        </div>
+                    <div class='btn-con'>
+                        <button class='btn'>Proceed to cheackout</button>
+                    </div>
                 </div>";
         } else {
             // Display message when cart is empty

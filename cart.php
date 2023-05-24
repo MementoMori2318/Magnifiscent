@@ -38,7 +38,9 @@ if (!isset($_SESSION['userid'])) {
             
         </div>
         <div class="total-item-container">
+        <h3 class='your-cart'>Order Summary</h2>
             <?php
+            
             displayOrderSummary($conn);
             ?>
 

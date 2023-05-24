@@ -86,6 +86,7 @@ function getProduct($conn)
                 <div class='card-info'>
                     <p class='text-title'>" . $row['product_name'] . "</p>
                     <p>by: ".$row['product_brand']."</p>
+                    <p>for: ".$row['product_gender']."</p>
                 </div>
                 <div class='card-footer'>
                     <span class='text-title'>₱" . $row['product_price'] . ".00</span>
@@ -198,17 +199,17 @@ function displayCartItems($conn)
                 <div class='counter'>
                     <form action='cart.php?action='" . update_quantity($conn) . "' method='POST'>
                         <input type='hidden' name='product_id' value='$product_id'>
-                        <button class='minus-btn' type='submit' name='minus'>
+                        <button class='minus-btn' type='submit' name='minus' data-product-id='$product_id'>
                             <i class='fas fa-minus'></i>
                         </button>
-                        <input type='text' name='quantity' value='$product_quantity' class='count'>
-                        <button class='plus-btn' type='submit' name='plus'>
+                        <input type='text' name='quantity' value='$product_quantity' class='count' data-product-id='$product_id'>
+                        <button class='plus-btn' type='submit' name='plus' data-product-id='$product_id'>
                         <i class='fas fa-plus'></i>
                         </button>
                     </form>
                     <div class='tooltip'>
                     <form action='cart.php?action=delete&id=$product_id' method='POST' >
-                        <button class='delete-btn fa fa-trash ' type='submit' name='delete'></button>
+                        <button class='delete-btn fa fa-trash ' type='submit' name='delete' data-product-id='$product_id'></button>
                         <span class='tooltiptext'>remove</span>
                     </form>
                 </div>
@@ -221,25 +222,29 @@ function displayCartItems($conn)
     }
      ?>
         <script>
-         const minusBtns = document.querySelectorAll('.minus-btn');
+const minusBtns = document.querySelectorAll('.minus-btn');
 const plusBtns = document.querySelectorAll('.plus-btn');
 const counters = document.querySelectorAll('.count');
 
-minusBtns.forEach((btn, index) => {
+minusBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
-    const currentCount = parseInt(counters[index].value);
+    const product_id = btn.dataset.productId;
+    const counter = document.querySelector(`.count[data-product-id='${product_id}']`);
+    const currentCount = parseInt(counter.value);
     if (currentCount > 1) {
-      counters[index].value = currentCount - 1;
-      updateQuantity(counters[index]);
+      counter.value = currentCount - 1;
+      updateQuantity(counter);
     }
   });
 });
 
-plusBtns.forEach((btn, index) => {
+plusBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
-    const currentCount = parseInt(counters[index].value);
-    counters[index].value = currentCount + 1;
-    updateQuantity(counters[index]);
+    const product_id = btn.dataset.productId;
+    const counter = document.querySelector(`.count[data-product-id='${product_id}']`);
+    const currentCount = parseInt(counter.value);
+    counter.value = currentCount + 1;
+    updateQuantity(counter);
   });
 });
 
@@ -247,11 +252,12 @@ function updateQuantity(counter) {
   const product_id = counter.dataset.productId;
   const new_quantity = counter.value;
 
-  const form = counter.closest('form');
+  const form = counter.closest('.counter').querySelector('form');
   form.action = `cart.php?action=update&id=${product_id}`;
 
-  // Save the new quantity to localStorage
-  localStorage.setItem(`quantity_${product_id}`, new_quantity);
+  // Save the new quantity to localStorage with a unique key for each product
+  const storageKey = `quantity_${product_id}`;
+  localStorage.setItem(storageKey, new_quantity);
 
   // Submit the form to update the quantity
   form.submit();
@@ -261,7 +267,8 @@ function updateQuantity(counter) {
 window.addEventListener('load', () => {
   counters.forEach(counter => {
     const product_id = counter.dataset.productId;
-    const saved_quantity = localStorage.getItem(`quantity_${product_id}`);
+    const storageKey = `quantity_${product_id}`;
+    const saved_quantity = localStorage.getItem(storageKey);
     if (saved_quantity) {
       counter.value = saved_quantity;
     }
@@ -274,12 +281,10 @@ deleteButtons.forEach(btn => {
   btn.addEventListener('click', () => {
     const counter = btn.closest('.counter').querySelector('.count');
     const product_id = counter.dataset.productId;
-    localStorage.removeItem(`quantity_${product_id}`);
+    const storageKey = `quantity_${product_id}`;
+    localStorage.removeItem(storageKey);
   });
 });
-
-
-
 
             </script>
             <?php
@@ -350,6 +355,10 @@ function displayOrderSummary($conn)
                 $cart_total += $product_quantity;
                 $total_price += $product_price * $product_quantity;
             }
+
+            // Store the cart total in the session
+            $_SESSION['cart_total'] = $cart_total;
+
             echo "<div class='order-summary'>
                     <h2>Order Summary</h2>
                     <p>Total Products: $cart_total</p>
@@ -357,14 +366,15 @@ function displayOrderSummary($conn)
                 </div>";
         } else {
             // Display message when cart is empty
+            $_SESSION['cart_total'] = 0;
             echo "<div class='order-summary'>
                     <h2>Order Summary</h2>
                     <p>Your cart is empty.</p>
                 </div>";
         }
-     
     }
 }
+
 
 function productDetails($conn){
     // Retrieve the product_id from the URL

@@ -35,8 +35,8 @@
         <a href="index.php"><img src="image/logo.png" alt="Logo"></a>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="">Men</a></li>
-                <li><a href="">Women</a></li>
+                <li><a href="productbyGender.php?gender=Men">Men</a></li>
+                <li><a href="productbyGender.php?gender=Women">Women</a></li>
                 <li class='dropdown'>
                     <a href="">Brands</a>
                     <div class="dropdown-content">
@@ -57,28 +57,8 @@
                 </div>
                 
                 <span id="cart-total">
-    <?php 
-   
-    if(isset($_SESSION["useruid"])){
-        $userId = $_SESSION['userid'];
-        $query = "SELECT COUNT(*) as count FROM cart WHERE users_id = $userId";
-        $result = mysqli_query($conn, $query);
-        if ($result) {
-            // Fetch the result
-            $row = mysqli_fetch_assoc($result);
-
-            // Access the count value
-            $count = $row['count'];
-
-            // Output the count
-            
-                echo $count;
-           
-            
-        } 
-    }
-    // echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?>
-</span>
+                    <?php echo isset($_SESSION['cart_total']) ? $_SESSION['cart_total'] : 0; ?>
+                </span>
 
             </a>
             <div class='dropdown'>

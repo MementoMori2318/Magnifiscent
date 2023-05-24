@@ -1,10 +1,10 @@
 <?php
-$brand = $_GET['brand'];
-function getProductByBrand($conn, $brand) {
-    // Get product data from the database based on brand
-    $sql = "SELECT * FROM Products WHERE product_brand=?";
+$gender = $_GET['gender'];
+function getProductByGender($conn, $gender) {
+    // Get product data from the database based on gender
+    $sql = "SELECT * FROM Products WHERE product_gender=?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $brand);
+    $stmt->bind_param("s", $gender);
     $stmt->execute();
     $result = $stmt->get_result();
     
